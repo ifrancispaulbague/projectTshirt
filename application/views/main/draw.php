@@ -4,9 +4,10 @@
     <div class="box box-primary">
         <div class="box-header with-border box-info">
             <h3 class="box-title">Raffle Draw</h3>
-                <button class="btn btn-info pull-right btn-xs" id="btnSearch" name="btnSearch" type="button" >
-                    Back to Homepage
-                </button>
+                <a href="<?=base_url()?>home/" class="btn btn-info pull-right btn-xs" id="btnHome" name="btnHome" type="button" >
+                Back to Homepage
+                </a>
+          
         </div>
     <!-- End of Title Header -->
     
@@ -47,11 +48,11 @@
                 </div>
         </div>
 
-            <div class="box-footer">
-                <a href="<?=base_url()?>home/drawww" class="btn btn-info pull-left" id="btnSearch" name="btnSearch" type="button" >
-                SUBMIT
-                </a>
-            </div>
+		<div class="box-footer">
+           <button class="btn btn-info pull-left" id="btnSearch" name="btnSearch" type="button" >
+       			SUBMIT
+           </button>
+       </div>
 
     </div>
 

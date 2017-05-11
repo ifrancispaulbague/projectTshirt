@@ -1,7 +1,7 @@
 <section>
 	<footer class="main-footer">
-		<div class="pull-right hidden-xs">
+		<div hidden-xs align="center">
+			<strong align="center">Copyright &copy; 2017 <a href="<?=USSC_WEBSITE?>">Universal Storefront Services Corporation</a>.</strong> All rights reserved.
 		</div>
-		<strong>Copyright &copy; 2017 <a href="<?=USSC_WEBSITE?>">Universal Storefront Services Corporation</a>.</strong> All rights reserved.
 	</footer>
 </section>

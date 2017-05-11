@@ -20,4 +20,14 @@ class Home extends MY_Controller {
     {
         $this->main_html("draw", null);
     }
+
+    public function entry()
+    {
+        $this->main_html("entry", null);
+    }
+
+    public function report()
+    {
+        $this->main_html("report", null);
+    }
 }
