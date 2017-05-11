@@ -2,7 +2,7 @@
 
 class Home extends MY_Controller {
 
-    public $model = "prize_model";
+    public $model  = "prize_model";
     public $module = "main";
     public $data;
 

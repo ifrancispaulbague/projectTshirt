@@ -10,6 +10,7 @@
  *
  */
 
+define('TITLE',					'USSC - RAFFLE');
 define('HOST_URL',				$_SERVER['SERVER_NAME']);
 define('USSC_WEBSITE',			'http://www.ussc.com.ph/');
 
