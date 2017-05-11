@@ -1,5 +1,5 @@
 <?php
-
+	date_default_timezone_set('Asia/Manila');
 /*
  *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
@@ -18,6 +18,9 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
+if (gethostname() == 'ucs-web-01')
+	define('ENVIRONMENT', 'production');
+else	
 	define('ENVIRONMENT', 'development');
 /*
  *---------------------------------------------------------------

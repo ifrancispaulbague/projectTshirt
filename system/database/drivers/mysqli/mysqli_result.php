@@ -6,7 +6,7 @@
  *
  * @package		CodeIgniter
  * @author		ExpressionEngine Dev Team
- * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc.
+ * @copyright	Copyright (c) 2008 - 2011, EllisLab, Inc.
  * @license		http://codeigniter.com/user_guide/license.html
  * @link		http://codeigniter.com
  * @since		Version 1.0
@@ -167,6 +167,19 @@ class CI_DB_mysqli_result extends CI_DB_result {
 		return mysqli_fetch_object($this->result_id);
 	}
 
+	/**
+     * Read the next result
+     *
+     * @access	public
+     * @return  array
+     */   
+    function next_result()
+    {
+        if (is_object($this->conn_id))
+        {
+			return mysqli_next_result($this->conn_id);
+        }
+    }
 }
 
 

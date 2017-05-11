@@ -32,10 +32,8 @@ class MY_Model extends CI_Model {
         return $this->CI->db->delete($this->table, $where);
     }
 
-    public function get($where, $limit = FALSE, $order = FALSE, $by = "ASC")
+    public function get($where, $limit = FALSE)
     {
-        if($order !== FALSE)
-            $this->CI->db->order_by($order,$by);
         if($limit !== FALSE)
             $this->CI->db->limit($limit);
         return $this->CI->db->get_where($this->table, $where);
@@ -66,7 +64,4 @@ class MY_Model extends CI_Model {
         return $this->CI->db->get($this->table);
     }
 
-    public function query($query) {
-        return $this->CI->db->query($query);
-    }
 }
