@@ -24,32 +24,32 @@
         <div class="box-body" id='prize_category'>
             <label class="col-sm-2 control-label">Prize Category</label>
                 <div class="col-sm-3">
-                    <select class="form-control" id="major">/
+                    <select class="form-control" id="prize_category">/
                         <option value=""></option>
                         <option value="Major">Major</option>
                         <option value="Minor">Minor</option>
                     </select>
                 </div>
         </div>
+
         <div class="box-body" id='minor_prize'>
             <label class="col-sm-2 control-label">Prize Type</label>
                 <div class="col-sm-3">
-                    <select class="form-control" id="minor">
-                        <option value=""></option>
-                        <option value="">Php 500</option>
-                        <option value="">Php 1000</option>
+                    <select class="form-control" id="prize_type">
+                                 
                     </select>
                 </div>
+
         </div>
         <div class="box-body" id='winners'>
             <label class="col-sm-2 control-label">No. of Winners</label>
                 <div class="col-sm-1">
-                    <input type="text" class="form-control" placeholder=".col-xs-1">
+                    <input type="text" id="winners" class="col-sm-2">
                 </div>
         </div>
 
 		<div class="box-footer">
-           <button class="btn btn-info pull-left" id="btnSearch" name="btnSearch" type="button" >
+           <button class="btn btn-info pull-left" id="btnDraw" name="btnDraw" type="button" >
        			SUBMIT
            </button>
        </div>

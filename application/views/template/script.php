@@ -19,3 +19,48 @@
 <script src="<?=base_url()?>assets/admin_lte/plugins/fastclick/fastclick.js"></script>
 <script src="<?=base_url()?>assets/admin_lte/dist/js/app.min.js"></script>
 <script src="<?=base_url()?>assets/admin_lte/dist/js/demo.js"></script>
+
+<script type="text/javascript">
+
+$("#btnDraw").click(function() {
+    alert(1);
+});
+
+$("#btnEntry").click(function() {
+    alert(1);
+});
+
+$("#btnReport").click(function() {
+    alert(1);
+});
+
+$("#prize_category").change(function(){
+	// var category = this.element.val();
+	var category	=	$("#prize_category option:selected").val();
+	// alert(category);
+	// if(category = "Major"){
+	// 		type.set
+	// }
+	$.ajax({
+		type: "POST",
+		url: "<?=base_url()?>home/prizes", //controller
+		data: { category: category},
+		success: function(data){
+			var obj = $.parseJSON(data);
+
+			$("#prize_type").empty();
+			for (i = 0; i < obj.length; i++) {
+				$("#prize_type").append("<option value="+obj[i].winner_count+"> "+obj[i].prize_name+" </option>");
+			}
+		}
+	});
+});
+
+$("#prize_type").change(function(){
+	var count = $(this).val();
+ 	$('#winners').val() = count;
+});
+
+
+
+</script>

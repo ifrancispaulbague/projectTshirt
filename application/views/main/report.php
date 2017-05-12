@@ -29,7 +29,7 @@
        </div>
   
            <div class="box-footer">
-               <button class="btn btn-info pull-left" id="btnSearch" name="btnSearch" type="button" >
+               <button class="btn btn-info pull-left" id="btnReport" name="btnReport" type="button" >
            SUBMIT
                </button>
            </div>
