@@ -10,7 +10,7 @@
                     </a>
             </div>
         <!-- End of Title Header -->
-
+                <!-- File Upload -->
                 <div class="box-body">
                     <label class="col-sm-2 control-label">Promo Title</label>
                         <select id="category">
@@ -24,12 +24,13 @@
                       <input type="file" id="InputFile">
                   </div>
                 </div>
-      
-                <div class="box-footer">
-                    <button class="btn btn-info pull-left" id="btnEntry" name="btnEntry" type="button" >
-                        SUBMIT
-                    </button>
-                </div>
+                <!-- End of File Upload -->
+
+                    <div class="box-footer">
+                        <button class="btn btn-info pull-left" id="btnEntry" name="btnEntry" type="button" >
+                            SUBMIT
+                        </button>
+                    </div>
         </div>
     </div>
    

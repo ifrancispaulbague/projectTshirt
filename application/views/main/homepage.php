@@ -21,7 +21,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <a href="<?=base_url()?>home/entry" class="btn btn-primary btn-xs" id="btnHome" name="btnHome" type="button">
+                            <a href="<?=base_url()?>home/entries" class="btn btn-primary btn-xs" id="btnHome" name="btnHome" type="button">
                                 <img src="../assets/images/ticket.png" height="160" width="160"></button>
                             </a>
                         </td>

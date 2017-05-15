@@ -20,6 +20,8 @@
                     </select>
                 </div>
         </div>
+        
+      <!-- Content -->
         <div class="box-body" id='prize_category'>
             <label class="col-sm-2 control-label">Prize Category</label>
                 <div class="col-sm-3">
@@ -46,12 +48,13 @@
                     <input type="text" id="winners" class="col-sm-2">
                 </div>
         </div>
+      <!-- End of Content -->
 
-		<div class="box-footer">
-           <button class="btn btn-info pull-left" id="btnDraw" name="btnDraw" type="button" >
-       			SUBMIT
-           </button>
-       </div>
+		      <div class="box-footer">
+            <button class="btn btn-info pull-left" id="btnDraw" name="btnDraw" type="button" >
+       			  SUBMIT
+            </button>
+          </div>
 
     </div>
 
