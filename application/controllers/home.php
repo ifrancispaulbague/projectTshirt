@@ -3,6 +3,7 @@
 class Home extends MY_Controller {
 
     public $model  = "prize_model";
+    public $model2  = "entry_model";
     public $module = "main";
     public $data;
 

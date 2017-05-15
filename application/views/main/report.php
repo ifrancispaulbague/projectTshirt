@@ -14,8 +14,7 @@
            <label class="col-sm-2 control-label">Promo Title</label>
                <select id="category">
                    <option value=""></option>
-                   <option value="Major">Major</option>
-                   <option value="Minor">Minor</option>
+                   <option value="upgrade">USSC PanaloWallet Upgrade</option>
                </select>
        </div>
        <div class="box-body">

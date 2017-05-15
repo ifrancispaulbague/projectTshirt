@@ -16,8 +16,7 @@
                 <div class="col-sm-3">
                     <select class="form-control" id="category">
                         <option value=""></option>
-                        <option value="Major">-</option>
-                        <option value="Minor">--</option>
+                        <option value="upgrade">USSC PanaloWallet Upgrade</option>
                     </select>
                 </div>
         </div>
@@ -36,7 +35,7 @@
             <label class="col-sm-2 control-label">Prize Type</label>
                 <div class="col-sm-3">
                     <select class="form-control" id="prize_type">
-                                 
+                         <option value=""></option>        
                     </select>
                 </div>
 
