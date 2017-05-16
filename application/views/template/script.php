@@ -56,6 +56,10 @@ $("#btnEntry").click(function() {
     $("#entry_form").attr('action', '<?=base_url()?>home/upload_entries').submit();
 });
 
+$("#category").change(function() {
+	$("#promo_desc").val($("#category option:selected").text());
+});
+
 $("#btnReport").click(function() {
     alert(1);
 });
@@ -65,15 +69,10 @@ $("#btnConfirm").click(function() {
 });
 
 $("#prize_category").change(function(){
-	// var category = this.element.val();
 	var category	=	$("#prize_category option:selected").val();
-	// alert(category);
-	// if(category = "Major"){
-	// 		type.set
-	// }
 	$.ajax({
 		type: "POST",
-		url: "<?=base_url()?>home/prizes", //controller
+		url: "<?=base_url()?>home/prizes",
 		data: { category: category},
 		success: function(data){
 			var obj = $.parseJSON(data);

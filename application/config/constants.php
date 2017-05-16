@@ -13,7 +13,8 @@
 define('TITLE',					'USSC - RAFFLE');
 define('HOST_URL',				$_SERVER['SERVER_NAME']);
 define('USSC_WEBSITE',			'http://www.ussc.com.ph/');
-define('UPLOAD_PATH',			$_SERVER['DOCUMENT_ROOT'].'/raffle/entries');
+// define('UPLOAD_PATH',			$_SERVER['DOCUMENT_ROOT'].'/raffle/entries');
+define('UPLOAD_PATH',			'C:/xampp/htdocs/testing');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
