@@ -30,6 +30,8 @@ $("#btnDraw").click(function() {
 	// if(category = "Major"){
 	// 		type.set
 	// }
+
+	$("#tbl_winners").show();
 		$.ajax({
 			type: "POST",
 			url: "<?=base_url()?>home/draw", //controller
@@ -55,6 +57,10 @@ $("#btnEntry").click(function() {
 });
 
 $("#btnReport").click(function() {
+    alert(1);
+});
+
+$("#btnConfirm").click(function() {
     alert(1);
 });
 
