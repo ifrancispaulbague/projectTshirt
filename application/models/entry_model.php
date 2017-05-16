@@ -7,7 +7,7 @@
  *------------+------------------------+------------------------------------------
  */
 
-class Prize_model extends MY_Model {
+class Entry_model extends MY_Model {
 
     public $table = "entry";
 

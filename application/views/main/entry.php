@@ -15,15 +15,16 @@
             <form class="form-horizontal" method="POST" action="#" id="entry_form" name="entry_form" enctype="multipart/form-data">
                 <div class="box-body">
                     <label class="col-sm-2 control-label">Promo Title</label>
-                        <select id="category">
-                            <option value=""></option>
-                            <option value="upgrade">USSC PanaloWallet Upgrade</option>
-                        </select>
+                    <select id="category">
+                        <option value="0">--- SELECT ---</option>
+                        <option value="pw_upgrade">USSC PanaloWallet Upgrade</option>
+                    </select>
                 </div>
                 <div class="box-body">
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="InputFile">File</label>
                         <input type="file" class="file" id="filename" name="filename" required>
+                        <input type="text" class="hide" id="promo_desc" name="promo_desc" required>
                     </div>
                 </div>
             </form>
