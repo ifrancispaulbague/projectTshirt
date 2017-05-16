@@ -44,7 +44,7 @@ $("#btnDraw").click(function() {
 				alert(data);
 					$("#prize_type").empty();
 						for (i = 0; i < obj.length; i++) {
-						$("#prize_type").append("<option value="+obj[i].winner_count+"> "+obj[i].prize_name+" </option>");
+						
 					}
 			}
 		});
@@ -85,7 +85,5 @@ $("#prize_type").change(function(){
 	alert(count);
  	$('#winners').val(count);
 });
-
-
 
 </script>

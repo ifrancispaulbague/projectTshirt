@@ -28,13 +28,15 @@ class Home extends MY_Controller {
         // $data["prizes"] = $prizes->result_object();
         $this->load->model('entry_model');
         $this->load->model('draw_model');
-
         $where = array("promo_desc" => $this->input->post("category"));
-        $entry = $this->entry_model->get($where);
+        $entry = $this->entry_model->get($where, $this->input->post("winners"));
+        $data["entry"] = $entry->result_object();
+        //------
         foreach ($entry->result_object() as $key => $value) {
-          var_dump($value->record_id);
+        
         }
-        return;
+        
+        //------
         // $data = array(
                   // "pk" => pk,
         // );
@@ -49,10 +51,25 @@ class Home extends MY_Controller {
         //     // return;
         //   echo ('none');
         // }
+      
+        // echo json_encode($entry->result_object());
 
+        $this->main_html("draw", $data);
+    }
+
+    public function winners()
+    {
+        $this->load->model('entry_model');
+        $this->load->model('draw_model');
+
+        $where = array("promo_desc" => $this->input->post("category"));
+        $entry = $this->entry_model->get($where, $this->input->post("winners"));
+        $draw  = $this->draw_model->add($entry);
+        foreach ($entry->result_object() as $key => $value) {
+            
+        }
+        
         echo json_encode($entry->result_object());
-
-        $this->main_html("draw", null);
     }
 
     public function prizes()
