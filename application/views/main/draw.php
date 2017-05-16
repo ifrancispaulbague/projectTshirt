@@ -26,7 +26,7 @@
             <label class="col-sm-2 control-label">Prize Category</label>
                 <div class="col-sm-3">
                     <select class="form-control" id="prize_category">/
-                        <option value=""></option>
+                        <option value="0">select</option>
                         <option value="Major">Major</option>
                         <option value="Minor">Minor</option>
                     </select>
@@ -37,15 +37,15 @@
             <label class="col-sm-2 control-label">Prize Type</label>
                 <div class="col-sm-3">
                     <select class="form-control" id="prize_type">
-                         <option value=""></option>        
+                         <option value="0">select</option>        
                     </select>
                 </div>
 
         </div>
-        <div class="box-body" id='winners'>
+        <div class="box-body" id='winners_div'>
             <label class="col-sm-2 control-label">No. of Winners</label>
-                <div class="col-sm-1">
-                    <input type="text" id="winners" class="col-sm-2">
+                <div class="col-sm-5">
+                    <input type="text" id="winners" class="col-sm-5">
                 </div>
         </div>
       <!-- End of Content -->
@@ -79,13 +79,13 @@
               <tbody>
                 <?php foreach ($entry as $key => $value): ?>
                   <tr>
-                    <td style='text-align:center'><?php $value->record_id ?></td>
-                    <td style='text-align:center'><?php $value->promo_desc ?></td>
-                    <td style='text-align:center'><?php $value->pk ?></td>
-                    <td style='text-align:center'><?php $value->product ?></td>
-                    <td style='text-align:center'><?php $value->description ?></td>
-                    <td style='text-align:center'><?php $value->tran_date ?></td>
-                    <td style='text-align:center'><?php $value->promo_desc ?></td>                 
+                    <td style='text-align:center'><?=$value->record_id ?></td>
+                    <td style='text-align:center'><?=$value->promo_desc ?></td>
+                    <td style='text-align:center'><?=$value->pk ?></td>
+                    <td style='text-align:center'><?=$value->product ?></td>
+                    <td style='text-align:center'><?=$value->description ?></td>
+                    <td style='text-align:center'><?=$value->tran_date ?></td>
+                    <td style='text-align:center'><?=$value->upload_date ?></td>                 
                   </tr>
                 <?php  endforeach; ?>
              </tbody>
