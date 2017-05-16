@@ -9,8 +9,10 @@
                         Back to Homepage
                     </a>
             </div>
-        <!-- End of Title Header -->
-                <!-- File Upload -->
+            <!-- End of Title Header -->
+
+            <!-- File Upload -->
+            <form class="form-horizontal" method="POST" action="#" id="entry_form" name="entry_form" enctype="multipart/form-data">
                 <div class="box-body">
                     <label class="col-sm-2 control-label">Promo Title</label>
                         <select id="category">
@@ -19,18 +21,19 @@
                         </select>
                 </div>
                 <div class="box-body">
-                  <div class="form-group">
-                      <label for="InputFile">File</label>
-                      <input type="file" id="InputFile">
-                  </div>
-                </div>
-                <!-- End of File Upload -->
-
-                    <div class="box-footer">
-                        <button class="btn btn-info pull-left" id="btnEntry" name="btnEntry" type="button" >
-                            SUBMIT
-                        </button>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="InputFile">File</label>
+                        <input type="file" class="file" id="filename" name="filename" required>
                     </div>
+                </div>
+            </form>
+            <!-- End of File Upload -->
+
+            <div class="box-footer">
+                <button class="btn btn-info pull-left" id="btnEntry" name="btnEntry" type="button" >
+                    SUBMIT
+                </button>
+            </div>
         </div>
     </div>
    

@@ -22,17 +22,17 @@
                     <tr>
                         <td>
                             <a href="<?=base_url()?>home/entries" class="btn btn-primary btn-xs" id="btnHome" name="btnHome" type="button">
-                                <img src="../assets/images/ticket.png" height="160" width="160"></button>
+                                <img src="<?=base_url()?>assets/images/ticket.png" height="160" width="160"></button>
                             </a>
                         </td>
                         <td>
                              <a href="<?=base_url()?>home/draw" class="btn btn-primary btn-xs" id="btnHome" name="btnHome" type="button" style="margin:20px auto text-align:center display:block width:120px">
-                                <img src="../assets/images/raffle.png" height="160" width="160"></button>
+                                <img src="<?=base_url()?>/assets/images/raffle.png" height="160" width="160"></button>
                             </a>
                         </td>
                         <td>
                              <a href="<?=base_url()?>home/report" class="btn btn-primary btn-xs" id="btnHome" name="btnHome" type="button" style="margin:20px auto text-align:center display:block width:120px">
-                                <img src="../assets/images/report.png" height="160" width="160"></button>
+                                <img src="<?=base_url()?>/assets/images/report.png" height="160" width="160"></button>
                             </a>
                         </td>
                     </tr>
