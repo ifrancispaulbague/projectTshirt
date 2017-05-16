@@ -3,7 +3,6 @@
 class Home extends MY_Controller {
 
     public $model  = "prize_model";
-    public $model2  = "entry_model";
     public $module = "main";
     public $data;
 
@@ -27,6 +26,31 @@ class Home extends MY_Controller {
         // //return;
 
         // $data["prizes"] = $prizes->result_object();
+        $this->load->model('entry_model');
+        $this->load->model('draw_model');
+
+        $where = array("promo_desc" => $this->input->post("category"));
+        $entry = $this->entry_model->get($where);
+        foreach ($entry->result_object() as $key => $value) {
+          var_dump($value->record_id);
+        }
+        return;
+        // $data = array(
+                  // "pk" => pk,
+        // );
+    
+        // if ($this->db->_error_number()) {
+        //     // return $this->db->_error_message()
+        //     // return;
+        // }
+
+        // if ($draw_model->num_rows == 0) {
+        //     // return no record found
+        //     // return;
+        //   echo ('none');
+        // }
+
+        echo json_encode($entry->result_object());
 
         $this->main_html("draw", null);
     }
@@ -53,19 +77,19 @@ class Home extends MY_Controller {
     public function entries()
     {
      
-        // $entries = $this->entry_model;
+        $entries = $this->entry_model;
 
-        // if ($this->db->_error_number()) {
-        //     // return $this->db->_error_message()
-        //     return;
-        // }
+        if ($this->db->_error_number()) {
+            // return $this->db->_error_message()
+            return;
+        }
 
-        // if ($entries->num_rows == 0) {
-        //     // return no record found
-        //     return;
-        // }
+        if ($entries->num_rows == 0) {
+            // return no record found
+            return;
+        }
 
-        // echo json_encode($entries->result_object());
+        echo json_encode($entries->result_object());
 
         $this->main_html("entry", null);
     }

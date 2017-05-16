@@ -23,7 +23,31 @@
 <script type="text/javascript">
 
 $("#btnDraw").click(function() {
-    alert(1);
+	var category	=	$("#category option:selected").val();
+	// var prize_category	=	$("#prize_category option:selected").val();
+	// var prize_type	=	$("#prize_type option:selected").val();
+	// alert(category);
+	// if(category = "Major"){
+	// 		type.set
+	// }
+		$.ajax({
+			type: "POST",
+			url: "<?=base_url()?>home/draw", //controller
+			data: { 
+				// prize_category:prize_category
+				// prize_type:prize_type
+				category:category
+			},
+			success: function(data){
+				var obj = $.parseJSON(data);
+				alert(obj);
+				alert(data);
+					$("#prize_type").empty();
+						for (i = 0; i < obj.length; i++) {
+						$("#prize_type").append("<option value="+obj[i].winner_count+"> "+obj[i].prize_name+" </option>");
+					}
+			}
+		});
 });
 
 $("#btnEntry").click(function() {
@@ -58,7 +82,8 @@ $("#prize_category").change(function(){
 
 $("#prize_type").change(function(){
 	var count = $(this).val();
- 	$('#winners').val() = count;
+	alert(count);
+ 	$('#winners').val(count);
 });
 
 
