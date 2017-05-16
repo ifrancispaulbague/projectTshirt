@@ -27,7 +27,7 @@ $("#btnDraw").click(function() {
 });
 
 $("#btnEntry").click(function() {
-    alert(1);
+    $("#entry_form").attr('action', '<?=base_url()?>home/upload_entries').submit();
 });
 
 $("#btnReport").click(function() {
