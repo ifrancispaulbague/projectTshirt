@@ -15,7 +15,8 @@ $autoload['libraries'] = array();
 $autoload['helper'] = array('url', 'file');
 $autoload['config'] = array();
 $autoload['language'] = array();
-$autoload['model'] = array();
+$autoload['model'] = array('draw_model','entry_model','prize_model');
+
 
 
 /* End of file autoload.php */
