@@ -9,7 +9,7 @@
 
 function syslogs($log, $type="")
 {
-    $fname = $_SERVER['DOCUMENT_ROOT']."raffle/syslogs/".date("Ymd")."-".$type.".log";
+    $fname = $_SERVER['DOCUMENT_ROOT']."/raffle/syslogs/".date("Ymd")."-".$type.".log";
     if(! file_exists($fname))
     {
         $file = fopen($fname, 'w');

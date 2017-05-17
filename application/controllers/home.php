@@ -122,7 +122,7 @@ class Home extends MY_Controller {
                 if ($this->db->_error_number()) {
                     $log  = date("Y-m-d H:i:s")." :: Database error: ".$this->db->_error_message()." || ";
                     $log .= "PANALOKARD: ".$line[0]."\n";
-                    syslogs($log, "-ENTRY");
+                    syslogs($log, "ENTRY");
 
                     $entries["err"] = array("code"=>"99", "msg"=>"DATABASE ERROR. PLEASE CONTACT ADMINISTRATOR.");
                     $this->main_html("entry", $entries);
@@ -132,7 +132,7 @@ class Home extends MY_Controller {
                 if (!$add_entry) {
                     $log  = date("Y-m-d H:i:s")." :: ";
                     $log .= "Insert error: ".$this->db->_error_message()." || PANALOKARD: ".$line[0]."\n";
-                    syslogs($log, "-ENTRY");
+                    syslogs($log, "ENTRY");
                     $unuploaded++;
                 } else {
                     $uploaded++;
