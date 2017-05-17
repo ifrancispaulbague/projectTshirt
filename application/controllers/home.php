@@ -147,4 +147,10 @@ class Home extends MY_Controller {
         $this->main_html("entry", $data);
         return;
     }
+
+    public function report_list()
+    {
+        $category = $this->input->post("category");
+        $criteria = $this->input->post("criteria");
+    }
 }

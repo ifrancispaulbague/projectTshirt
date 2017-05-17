@@ -56,7 +56,23 @@ $("#category").change(function() {
 });
 
 $("#btnReport").click(function() {
-    $("#tbl_reports").show();
+	if ($("#category").val() == 0 || $("#extract").val() == 0) {
+		alert("Please fill out all fields.");
+		return;
+	}
+
+	$.ajax({
+		type: "POST",
+		url: "<?=base_url()?>home/report_list",
+		data: {
+			category: $("#category").val(),
+			criteria: $("#extract").val()
+		},
+		success: function(data) {
+			//
+		}
+	});
+    // $("#tbl_reports").show();
 });
 
 $("#btnConfirm").click(function() {

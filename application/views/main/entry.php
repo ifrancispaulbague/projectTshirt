@@ -14,7 +14,7 @@
         <form class="form-horizontal" method="POST" action="#" id="entry_form" name="entry_form" enctype="multipart/form-data">
             <div class="box-body">
                 <label class="col-sm-2 control-label">Promo Title</label>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <select class="form-control" id="category">
                         <option value="0">--- SELECT ---</option>
                         <option value="upgrade">USSC PanaloWallet Upgrade</option>

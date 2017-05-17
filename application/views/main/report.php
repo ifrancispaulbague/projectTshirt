@@ -1,56 +1,47 @@
 <div class="col-xs-12">
                        
-<!-- Title Header -->
-<div class="box box-primary">
-    <div class="box-header with-border box-info">
-        <h3 class="box-title">Reports Data</h3>
-            <a href="<?=base_url()?>home/" class="btn btn-info pull-right btn-xs" id="btnHome" name="btnHome" type="button" >
-            Back to Homepage
-            </a>
-    </div>
-<!-- End of Title Header -->
-      <!-- Content -->
-        <div class="box-body">
-          <label class="col-sm-2 control-label">Promo Title</label>
-            <select id="category">
-              <option value=""></option>
-              <option value="upgrade">USSC PanaloWallet Upgrade</option>
-            </select>
+    <div class="box box-primary">
+        <div class="box-header with-border box-info">
+            <h3 class="box-title">Reports</h3>
+            <a href="<?=base_url()?>" class="btn btn-info pull-right btn-xs" id="btnHome" name="btnHome"> Back to Homepage </a>
         </div>
+
         <div class="box-body">
-            <label class="col-sm-2 control-label">Reports</label>
-                <select id="category">
-                  <option value=""></option>   
-                  <option value="Major">Raffle Entries</option>
-                  <option value="Minor">Raffle Prizes</option>
-                  <option value="Minor">Raffle Winners</option>
+            <label class="col-sm-2 control-label">Promo Title</label>
+            <div class="col-sm-4">
+                <select class="form-control" id="category">
+                    <option value="0">--- SELECT ---</option>
+                    <option value="upgrade">USSC PanaloWallet Upgrade</option>
                 </select>
+            </div>
         </div>
-      <!-- End of Content -->
+        <div class="box-body">
+            <label class="col-sm-2 control-label">Criteria</label>
+            <div class="col-sm-4">
+                <select class="form-control" id="extract">
+                    <option value="0">--- SELECT ---</option>
+                    <option value="entry">Raffle Entries</option>
+                    <option value="prize">Raffle Prizes</option>
+                    <option value="winner">Raffle Winners</option>
+                </select>
+            </div>
+        </div>
+        <div class="box-footer">
+            <button class="btn btn-info pull-left" id="btnReport" name="btnReport" type="button" >
+                SUBMIT
+            </button>
+        </div>
+
         <div class="box-body"> 
-          <div class="box-body table-responsive">   
-            <table class="table table-bordered table-hover table-striped" id="tbl_reports" hidden>
-              <thead>
-                <tr> 
-                  <th style='text-align:center'></th>
-                </tr>
-              </thead>
-              <tbody>
-<!--                 <?php foreach ($entry as $key => $value): ?>
-                  <tr>
-                    <td style='text-align:center'><?=$value->?></td>              
-                  </tr>
-                <?php  endforeach; ?> -->
-             </tbody>
-            </table>
-          </div>
+            <div class="box-body table-responsive">   
+                <table class="table table-bordered table-hover table-striped" id="tbl_reports" hidden>
+                    <thead>
+                        <th style='text-align:center'></th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
         </div>
-
-           <div class="box-footer">
-               <button class="btn btn-info pull-left" id="btnReport" name="btnReport" type="button" >
-           SUBMIT
-               </button>
-           </div>
-
-        </div>
+    </div>
 </div>
