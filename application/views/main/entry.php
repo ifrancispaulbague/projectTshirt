@@ -1,3 +1,4 @@
+<?=$this->load->view("main/message", $err);?>
 <div class="col-xs-12">
    
     <div class="box box-primary">

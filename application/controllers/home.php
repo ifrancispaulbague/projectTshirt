@@ -88,7 +88,8 @@ class Home extends MY_Controller {
 
     public function entries()
     {
-        $this->main_html("entry", null);
+        $data["err"] = array("code"=>"", "msg"=>"");
+        $this->main_html("entry", $data);
     }
 
     public function report()
@@ -100,23 +101,50 @@ class Home extends MY_Controller {
     {
         $csv_filename = $_FILES['filename']['tmp_name'];
 
-        $file = fopen($csv_filename, 'r');
-        $ctr = 0;
+        $file       = fopen($csv_filename, 'r');
+        $ctr        = 0;
+        $uploaded   = 0;
+        $unuploaded = 0;
 
-        /* skip header line of csv file */
         while (($line = fgetcsv($file)) !== FALSE) {
             $ctr += 1;
             if ($ctr != 1) {
-                $data = array("promo_desc"  => $this->input->post("promo_desc"),
+                $entries = array("promo_desc"  => $this->input->post("promo_desc"),
                               "pk"          => $line[0],
                               "product"     => $line[2],
                               "description" => $line[3],
                               "tran_date"   => $line[1],
-                              "upload_date" => date("Y-m-d")
+                              "upload_date" => date("Y-m-d H:i:s")
                              );
                 $this->load->model("entry_model");
-                $this->entry_model->add($data);
+                $add_entry = $this->entry_model->add($entries);
+
+                if ($this->db->_error_number()) {
+                    $log  = date("Y-m-d H:i:s")." :: Database error: ".$this->db->_error_message()." || ";
+                    $log .= "PANALOKARD: ".$line[0]."\n";
+                    syslogs($log, "-ENTRY");
+
+                    $entries["err"] = array("code"=>"99", "msg"=>"DATABASE ERROR. PLEASE CONTACT ADMINISTRATOR.");
+                    $this->main_html("entry", $entries);
+                    return;
+                }
+
+                if (!$add_entry) {
+                    $log  = date("Y-m-d H:i:s")." :: ";
+                    $log .= "Insert error: ".$this->db->_error_message()." || PANALOKARD: ".$line[0]."\n";
+                    syslogs($log, "-ENTRY");
+                    $unuploaded++;
+                } else {
+                    $uploaded++;
+                }
             }
         }
+
+        $msg  = "<strong>UPLOAD SUCCESSFUL. </strong> <br>";
+        $msg .= "Total entries uploaded: ".$uploaded."<br>";
+        $msg .= "Error uploading: ".$unuploaded;
+        $data["err"] = array("code"=>"00", "msg"=>$msg);
+        $this->main_html("entry", $data);
+        return;
     }
 }
