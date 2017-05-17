@@ -12,7 +12,7 @@
 
 $autoload['packages'] = array();
 $autoload['libraries'] = array();
-$autoload['helper'] = array('url', 'file');
+$autoload['helper'] = array('url', 'file', 'common');
 $autoload['config'] = array();
 $autoload['language'] = array();
 $autoload['model'] = array('draw_model','entry_model','prize_model');

@@ -70,7 +70,8 @@ $("#btnDraw").click(function() {
 				alert(obj);
 				alert(data);
 			}
-		});
+		}
+	});
 });
 //------- Confirm Winners -------//
 $("#btnConfirm").click(function() {
@@ -93,6 +94,11 @@ $("#btnConfirm").click(function() {
 
 //------- Upload Entries -------//
 $("#btnEntry").click(function() {
+	if ($("#category").val() == 0 || $("#filename").val() == "") {
+		alert("Please fill out all fields.");
+		return;
+	}
+
     $("#entry_form").attr('action', '<?=base_url()?>home/upload_entries').submit();
 });
 //--//
