@@ -26,7 +26,7 @@
             <label class="col-sm-2 control-label">Prize Category</label>
                 <div class="col-sm-3">
                     <select class="form-control" id="prize_category">/
-                        <option value=""></option>
+                        <option value="0">select</option>
                         <option value="Major">Major</option>
                         <option value="Minor">Minor</option>
                     </select>
@@ -37,15 +37,15 @@
             <label class="col-sm-2 control-label">Prize Type</label>
                 <div class="col-sm-3">
                     <select class="form-control" id="prize_type">
-                         <option value=""></option>        
+                         <option value="0">select</option>        
                     </select>
                 </div>
 
         </div>
-        <div class="box-body" id='winners'>
+        <div class="box-body" id='winners_div'>
             <label class="col-sm-2 control-label">No. of Winners</label>
-                <div class="col-sm-1">
-                    <input type="text" id="winners" class="col-sm-2">
+                <div class="col-sm-5">
+                    <input type="text" id="winners" class="col-sm-5">
                 </div>
         </div>
       <!-- End of Content -->
@@ -62,33 +62,35 @@
         <div class="box-header with-border box-info">
             <h3 class="box-title">Confirm Entries</h3>
         </div>
-        <div class="box-body table-responsive" id="div_winners">
-          <table class="table table-bordered table-hover table-striped" id="tbl_winners">
-            <thead>
-              <tr> 
-                <th style='text-align:center'>Record</th>
-                <th style='text-align:center'>Promo</th>
-                <th style='text-align:center'>PK</th>
-                <th style='text-align:center'>Product</th>
-                <th style='text-align:center'>Description</th>
-                <th style='text-align:center'>Transaction Date</th>
-                <th style='text-align:center'>Upload Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php foreach ($entry as $key => $value): ?>
-                <tr>
-                  <td><?php $value->record_id ?></td>
-                  <td><?php $value->promo_desc ?></td>
-                  <td><?php $value->pk ?></td>
-                  <td><?php $value->product ?></td>
-                  <td><?php $value->description ?></td>
-                  <td><?php $value->tran_date ?></td>
-                  <td><?php $value->promo_desc ?></td>                 
+        <div class="box-body"> 
+          <div class="box-body table-responsive">   
+            <table class="table table-bordered table-hover table-striped" id="tbl_winners" hidden>
+              <thead>
+                <tr> 
+                  <th style='text-align:center'>Record</th>
+                  <th style='text-align:center'>Promo</th>
+                  <th style='text-align:center'>PK</th>
+                  <th style='text-align:center'>Product</th>
+                  <th style='text-align:center'>Description</th>
+                  <th style='text-align:center'>Transaction Date</th>
+                  <th style='text-align:center'>Upload Date</th>
                 </tr>
-              <?php  endforeach; ?>
-           </tbody>
-          </table>
+              </thead>
+              <tbody>
+                <?php foreach ($entry as $key => $value): ?>
+                  <tr>
+                    <td style='text-align:center'><?=$value->record_id ?></td>
+                    <td style='text-align:center'><?=$value->promo_desc ?></td>
+                    <td style='text-align:center'><?=$value->pk ?></td>
+                    <td style='text-align:center'><?=$value->product ?></td>
+                    <td style='text-align:center'><?=$value->description ?></td>
+                    <td style='text-align:center'><?=$value->tran_date ?></td>
+                    <td style='text-align:center'><?=$value->upload_date ?></td>                 
+                  </tr>
+                <?php  endforeach; ?>
+             </tbody>
+            </table>
+          </div>
         </div>
         <div class="box-footer">
           <button class="btn btn-info pull-left" id="btnConfirm" name="btnConfirm" type="button" >

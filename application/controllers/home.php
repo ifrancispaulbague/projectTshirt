@@ -31,12 +31,7 @@ class Home extends MY_Controller {
         $where = array("promo_desc" => $this->input->post("category"));
         $entry = $this->entry_model->get($where, $this->input->post("winners"));
         $data["entry"] = $entry->result_object();
-        //------
-        foreach ($entry->result_object() as $key => $value) {
-        
-        }
-        
-        //------
+
         // $data = array(
                   // "pk" => pk,
         // );

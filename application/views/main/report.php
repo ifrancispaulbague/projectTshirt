@@ -27,6 +27,25 @@
                 </select>
         </div>
       <!-- End of Content -->
+        <div class="box-body"> 
+          <div class="box-body table-responsive">   
+            <table class="table table-bordered table-hover table-striped" id="tbl_reports" hidden>
+              <thead>
+                <tr> 
+                  <th style='text-align:center'></th>
+                </tr>
+              </thead>
+              <tbody>
+<!--                 <?php foreach ($entry as $key => $value): ?>
+                  <tr>
+                    <td style='text-align:center'><?=$value->?></td>              
+                  </tr>
+                <?php  endforeach; ?> -->
+             </tbody>
+            </table>
+          </div>
+        </div>
+
            <div class="box-footer">
                <button class="btn btn-info pull-left" id="btnReport" name="btnReport" type="button" >
            SUBMIT

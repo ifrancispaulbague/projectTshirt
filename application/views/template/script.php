@@ -30,6 +30,8 @@ $("#btnDraw").click(function() {
 	// if(category = "Major"){
 	// 		type.set
 	// }
+
+	$("#tbl_winners").show();
 		$.ajax({
 			type: "POST",
 			url: "<?=base_url()?>home/draw", //controller
@@ -59,6 +61,10 @@ $("#category").change(function() {
 });
 
 $("#btnReport").click(function() {
+    $("#tbl_reports").show();
+});
+
+$("#btnConfirm").click(function() {
     alert(1);
 });
 
@@ -71,17 +77,18 @@ $("#prize_category").change(function(){
 		success: function(data){
 			var obj = $.parseJSON(data);
 
-			$("#prize_type").empty();
+			$("#prize_type").empty().append("<option value='0'> select </option>");
 			for (i = 0; i < obj.length; i++) {
 				$("#prize_type").append("<option value="+obj[i].winner_count+"> "+obj[i].prize_name+" </option>");
 			}
+			if ($("#prize_type").val() != "0") $("#prize_type").change();
+
 		}
 	});
 });
 
 $("#prize_type").change(function(){
 	var count = $(this).val();
-	alert(count);
  	$('#winners').val(count);
 });
 
