@@ -118,8 +118,6 @@ class Home extends MY_Controller {
 
     public function upload_entries()
     {
-        var_dump($this->input->post());
-        return;
         $csv_filename = $_FILES['filename']['tmp_name'];
 
         $file = fopen($csv_filename, 'r');
@@ -133,59 +131,11 @@ class Home extends MY_Controller {
                               "pk"          => $line[0],
                               "product"     => $line[2],
                               "description" => $line[3],
-                              "tran_date"   => $line[1]
+                              "tran_date"   => $line[1],
+                              "upload_date" => date("Y-m-d")
                              );
-            //     if (strlen($line[0]) != 16) {
-            //         $invalid_card .= " Invalid Card Number: ".$line[0].'<br>';
-            //         $this->session->set_flashdata("error", $invalid_card);
-            //         $log .= "Invalid Card Number: ".$line[0]."\n";
-            //     } else {
-            //         /* IR39066 - Updated where clause */
-            //         $where = array( "LYCM_PanaloKardNo" => $line[1],
-            //                         "CDPM_CardType"     => "B",
-            //                         "Status"            => "2"
-            //                     );
-            //         $result = $this->CI->pkcd_model->get($where, $limit = 1, $order = 'Sequence', $by = 'DESC')->result_object();
-
-            //         /* IR38951 - addded error log */
-            //         if (!$result) {
-            //             $invalid_card .= " Please check status of this PanaloKardNo: ".$line[1].'<br>';
-            //             $this->session->set_flashdata("error", $invalid_card);
-            //             $log .= "No Record Found - Card Number: ".$line[0]." - PanaloKardNo :".$line[1]."\n";
-            //         } else {
-            //             $this->CI->db->trans_begin();
-            //             $this->CI->db->query("SET FOREIGN_KEY_CHECKS=0;");
-
-            //             $update_where = array("CardNo"        => $result[0]->CardNo,
-            //                                   "CDPM_CardType" => "B",
-            //                                   "Status"        => "2"
-            //                                 );
-
-            //             $update_status = array( "Status"        => $status, 
-            //                                     "IssueDate"     => date('Y-m-d', strtotime($line[5])),
-            //                                     "IssueTime"     => date('H:i:s', strtotime($line[6])),
-            //                                     "UpdatedBy"     => $this->session->userdata("emp_no"),
-            //                                     "UpdatedBranch" => $this->session->userdata("cost_center"),
-            //                                     "UpdatedDate"   => date("Y-m-d H:i:s")
-            //                             );
-
-            //             $update_result = $this->CI->pkcd_model->edit($update_where, $update_status);
-
-            //             /* IR38951 - addded error log */
-            //             if (!$update_result) {
-            //                 $log .= $this->db->_error_message()." ~ Card Number: ".$line[0]." - PanaloKardNo :".$line[1]."\n";
-            //             }
-
-            //             $this->CI->db->query("SET FOREIGN_KEY_CHECKS=1;");
-            //             if ($this->CI->db->trans_status() === FALSE) {
-            //                 $this->CI->db->trans_rollback();
-            //                 $this->session->set_flashdata("error", "Failed to Update Card: ".$line[0]);
-            //             } else {
-            //                 $this->CI->db->trans_commit();
-            //                 $this->session->set_flashdata("success", "Successfully uploaded!");
-            //             } 
-            //         }
-            //     }
+                $this->load->model("entry_model");
+                $this->entry_model->add($data);
             }
         }
     }
