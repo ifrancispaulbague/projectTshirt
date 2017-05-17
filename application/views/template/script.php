@@ -21,53 +21,7 @@
 <script src="<?=base_url()?>assets/admin_lte/dist/js/demo.js"></script>
 
 <script type="text/javascript">
-
-$("#btnDraw").click(function() {
-	var category	=	$("#category option:selected").val();
-	// var prize_category	=	$("#prize_category option:selected").val();
-	// var prize_type	=	$("#prize_type option:selected").val();
-	// alert(category);
-	// if(category = "Major"){
-	// 		type.set
-	// }
-
-	$("#tbl_winners").show();
-		$.ajax({
-			type: "POST",
-			url: "<?=base_url()?>home/draw", //controller
-			data: { 
-				// prize_category:prize_category
-				// prize_type:prize_type
-				category:category
-			},
-			success: function(data){
-				var obj = $.parseJSON(data);
-				alert(obj);
-				alert(data);
-					$("#prize_type").empty();
-						for (i = 0; i < obj.length; i++) {
-						
-					}
-			}
-		});
-});
-
-$("#btnEntry").click(function() {
-    $("#entry_form").attr('action', '<?=base_url()?>home/upload_entries').submit();
-});
-
-$("#category").change(function() {
-	$("#promo_desc").val($("#category option:selected").text());
-});
-
-$("#btnReport").click(function() {
-    $("#tbl_reports").show();
-});
-
-$("#btnConfirm").click(function() {
-    alert(1);
-});
-
+//------- Selecting Prize Type -------//
 $("#prize_category").change(function(){
 	var category	=	$("#prize_category option:selected").val();
 	$.ajax({
@@ -90,6 +44,64 @@ $("#prize_category").change(function(){
 $("#prize_type").change(function(){
 	var count = $(this).val();
  	$('#winners').val(count);
+});
+//--//
+
+//------- Select Winner From Entries -------//
+$("#btnDraw").click(function() {
+	var category	=	$("#category option:selected").val();
+	// var prize_category	=	$("#prize_category option:selected").val();
+	// var prize_type	=	$("#prize_type option:selected").val();
+	// alert(category);
+	// if(category = "Major"){
+	// 		type.set
+	// }	
+		$.ajax({
+			type: "POST",
+			url: "<?=base_url()?>home/draw", //controller
+			data: { 
+				// prize_category:prize_category
+				//"select" : $('#prize_type').val(),
+				category:category
+			},
+			success: function(data){
+				$("#tbl_winners").show();
+				var obj = $.parseJSON(data);
+				alert(obj);
+				alert(data);
+			}
+		});
+});
+//------- Confirm Winners -------//
+$("#btnConfirm").click(function() {
+	// $.ajax({
+	// 		type: "POST",
+	// 		url: "<?=base_url()?>home/draw", //controller
+	// 		data: { 
+	// 			// prize_category:prize_category
+	// 			//"select" : $('#prize_type').val(),
+	// 			category:category
+	// 		},
+	// 		success: function(data){
+					
+	// 		}
+	// 	});
+     $("#draw_form").attr('action', '<?=base_url()?>home/confirm_draw').submit();
+
+});
+//--//
+
+//------- Upload Entries -------//
+$("#btnEntry").click(function() {
+    $("#entry_form").attr('action', '<?=base_url()?>home/upload_entries').submit();
+});
+//--//
+$("#category").change(function() {
+	$("#promo_desc").val($("#category option:selected").text());
+});
+
+$("#btnReport").click(function() {
+    $("#tbl_reports").show();
 });
 
 </script>
