@@ -29,7 +29,7 @@ class Home extends MY_Controller {
         $this->load->model('entry_model');
         $this->load->model('draw_model');
         $where = array("promo_desc" => $this->input->post("category"));
-        $entry = $this->entry_model->get($where, $this->input->post("winners"));
+        $entry = $this->entry_model->get($where, $limit = $this->input->post("winners"),"rand()");
         $data["entry"] = $entry->result_object();
 
         // $data = array(
@@ -52,16 +52,21 @@ class Home extends MY_Controller {
         $this->main_html("draw", $data);
     }
 
-    public function winners()
+    public function confirm_draw()
     {
         $this->load->model('entry_model');
-        $this->load->model('draw_model');
+        
 
         $where = array("promo_desc" => $this->input->post("category"));
-        $entry = $this->entry_model->get($where, $this->input->post("winners"));
-        $draw  = $this->draw_model->add($entry);
-        foreach ($entry->result_object() as $key => $value) {
-            
+        $entry = $this->entry_model->get($where, $this->input->post("winners"),"rand()");
+        //$prize_desc = $this->input->post("prize_type");
+        foreach ($entry->result_object() as $key => $value) {    
+            $data = array(  "pk"          => $value->pk,
+                            "prize_desc"  => $value->pk,
+                            "draw_date"   => date("Y-m-d")
+                             );
+            $this->draw_model->add($data);
+            $this->load->model('draw_model');
         }
         
         echo json_encode($entry->result_object());
