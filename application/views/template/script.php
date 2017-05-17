@@ -23,36 +23,31 @@
 <script type="text/javascript">
 
 $("#btnDraw").click(function() {
-	var category	=	$("#category option:selected").val();
-	// var prize_category	=	$("#prize_category option:selected").val();
-	// var prize_type	=	$("#prize_type option:selected").val();
-	// alert(category);
-	// if(category = "Major"){
-	// 		type.set
-	// }
+	var category = $("#category option:selected").val();
 
 	$("#tbl_winners").show();
-		$.ajax({
-			type: "POST",
-			url: "<?=base_url()?>home/draw", //controller
-			data: { 
-				// prize_category:prize_category
-				// prize_type:prize_type
-				category:category
-			},
-			success: function(data){
-				var obj = $.parseJSON(data);
-				alert(obj);
-				alert(data);
-					$("#prize_type").empty();
-						for (i = 0; i < obj.length; i++) {
-						
-					}
+	$.ajax({
+		type: "POST",
+		url: "<?=base_url()?>home/draw",
+		data: { category: category },
+		success: function(data){
+			var obj = $.parseJSON(data);
+			alert(obj);
+			alert(data);
+			$("#prize_type").empty();
+				for (i = 0; i < obj.length; i++) {
+				
 			}
-		});
+		}
+	});
 });
 
 $("#btnEntry").click(function() {
+	if ($("#category").val() == 0 || $("#filename").val() == "") {
+		alert("Please fill out all fields.");
+		return;
+	}
+
     $("#entry_form").attr('action', '<?=base_url()?>home/upload_entries').submit();
 });
 

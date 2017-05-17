@@ -88,21 +88,6 @@ class Home extends MY_Controller {
 
     public function entries()
     {
-     
-        $entries = $this->entry_model;
-
-        if ($this->db->_error_number()) {
-            // return $this->db->_error_message()
-            return;
-        }
-
-        if ($entries->num_rows == 0) {
-            // return no record found
-            return;
-        }
-
-        echo json_encode($entries->result_object());
-
         $this->main_html("entry", null);
     }
 
