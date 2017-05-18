@@ -49,46 +49,54 @@ $("#prize_type").change(function(){
 
 //------- Select Winner From Entries -------//
 $("#btnDraw").click(function() {
-	var category	=	$("#category option:selected").val();
-	// var prize_category	=	$("#prize_category option:selected").val();
+	// var category	=	$("#category option:selected").text();
+ // var prize_category	=	$("#prize_category option:selected").val();
 	// var prize_type	=	$("#prize_type option:selected").val();
 	// alert(category);
 	// if(category = "Major"){
 	// 		type.set
 	// }	
+	// $("#tbl_winners").show();
 		$.ajax({
 			type: "POST",
-			url: "<?=base_url()?>home/draw", //controller
+			url: "<?=base_url()?>home/draw_winners", //controller
 			data: { 
-				// prize_category:prize_category
-				//"select" : $('#prize_type').val(),
-				category:category
+				category:$("#category option:selected").text(),
+				winners:$("#winners").val()
 			},
 			success: function(data){
-				$("#tbl_winners").show();
-				var obj = $.parseJSON(data);
-				alert(obj);
-				alert(data);
+				for (var i = Things.length - 1; i >= 0; i--) {
+
+				$("#tbody_winner").append(
+						"<tr>",
+                      "<td style='text-align:center'>"+$value->record_id +"</td>",
+                      "<td style='text-align:center'>"+$value->promo_desc +"</td>",
+                      "<td style='text-align:center'>"+$value->pk +"</td>",
+                      "<td style='text-align:center'>"+$value->product +"</td>",
+                      "<td style='text-align:center'>"+$value->description +"</td>",
+                      "<td style='text-align:center'>"+$value->tran_date +"</td>",
+                      "<td style='text-align:center'>"+$value->upload_date +"</td>",               
+            "</tr>",
+					);
 			}
-		}
 	});
 });
 //------- Confirm Winners -------//
 $("#btnConfirm").click(function() {
-	// $.ajax({
-	// 		type: "POST",
-	// 		url: "<?=base_url()?>home/draw", //controller
-	// 		data: { 
-	// 			// prize_category:prize_category
-	// 			//"select" : $('#prize_type').val(),
-	// 			category:category
-	// 		},
-	// 		success: function(data){
+	$.ajax({
+			type: "POST",
+			url: "<?=base_url()?>home/confirm_draw", //controller
+			data: { 
+				// prize_category:prize_category
+				prize_type:$("#prize_type option:selected").text(),
+				category:$("#category option:selected").val()
+			},
+			success: function(data){
 					
-	// 		}
-	// 	});
-     $("#draw_form").attr('action', '<?=base_url()?>home/confirm_draw').submit();
+			}
+		});
 
+    //$("#draw_form").attr('action', '<?=base_url()?>home/confirm_draw').submit();
 });
 //--//
 

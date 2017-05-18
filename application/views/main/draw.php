@@ -77,18 +77,18 @@
                     <th style='text-align:center'>Upload Date</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <?php foreach ($entry as $key => $value): ?>
-                    <tr>
-                      <td style='text-align:center'><?=$value->record_id ?></td>
-                      <td style='text-align:center'><?=$value->promo_desc ?></td>
-                      <td style='text-align:center'><?=$value->pk ?></td>
-                      <td style='text-align:center'><?=$value->product ?></td>
-                      <td style='text-align:center'><?=$value->description ?></td>
-                      <td style='text-align:center'><?=$value->tran_date ?></td>
-                      <td style='text-align:center'><?=$value->upload_date ?></td>                 
-                    </tr>
-                  <?php  endforeach; ?>
+                <tbody id="tbody_winner">
+                  <?php //foreach ($entry as $key => $value): ?>
+                    <!-- <tr>
+                      <td style='text-align:center'><?//=$value->record_id ?></td>
+                      <td style='text-align:center'><?//=$value->promo_desc ?></td>
+                      <td style='text-align:center'><?//=$value->pk ?></td>
+                      <td style='text-align:center'><?//=$value->product ?></td>
+                      <td style='text-align:center'><?//=$value->description ?></td>
+                      <td style='text-align:center'><?//=$value->tran_date ?></td>
+                      <td style='text-align:center'><?//=$value->upload_date ?></td>                 
+                    </tr> -->
+                  <?php  //endforeach; ?>
                </tbody>
               </table>
             </div>
