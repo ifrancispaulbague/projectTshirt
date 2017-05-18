@@ -65,7 +65,7 @@
           </div>
           <div class="box-body"> 
             <div class="box-body table-responsive">   
-              <table class="table table-bordered table-hover table-striped" id="tbl_winners" hidden>
+              <table class="table table-bordered table-hover table-striped" id="tbl_winners">
                 <thead>
                   <tr> 
                     <th style='text-align:center'>Record</th>

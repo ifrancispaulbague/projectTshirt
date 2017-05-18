@@ -65,22 +65,25 @@ $("#btnDraw").click(function() {
 				winners:$("#winners").val()
 			},
 			success: function(data){
-				for (var i = Things.length - 1; i >= 0; i--) {
-
-				$("#tbody_winner").append(
+				var obj = $.parseJSON(data);
+				for (i = 0; i < obj.length; i++) {
+					$("#tbody_winner").append(
 						"<tr>",
-                      "<td style='text-align:center'>"+$value->record_id +"</td>",
-                      "<td style='text-align:center'>"+$value->promo_desc +"</td>",
-                      "<td style='text-align:center'>"+$value->pk +"</td>",
-                      "<td style='text-align:center'>"+$value->product +"</td>",
-                      "<td style='text-align:center'>"+$value->description +"</td>",
-                      "<td style='text-align:center'>"+$value->tran_date +"</td>",
-                      "<td style='text-align:center'>"+$value->upload_date +"</td>",               
+                      "<td style='text-align:center'>"+obj[i].promo_desc +"</td>",
+                      "<td style='text-align:center'>"+obj[i].pk +"</td>",
+                      "<td style='text-align:center'>"+obj[i].product +"</td>",
+                      "<td style='text-align:center'>"+obj[i].description +"</td>",
+                      "<td style='text-align:center'>"+obj[i].tran_date +"</td>",
+                      "<td style='text-align:center'>"+obj[i].upload_date +"</td>",               
             "</tr>",
-					);
+            );
+          }
 			}
 	});
 });
+
+
+          
 //------- Confirm Winners -------//
 $("#btnConfirm").click(function() {
 	$.ajax({

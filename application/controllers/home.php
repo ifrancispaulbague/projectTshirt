@@ -38,7 +38,7 @@ class Home extends MY_Controller {
         $entry = $this->entry_model->get($where, $this->input->post("winners"), "record_id", "rand");
         $data["entry"] = $entry->result_object();
 
-        echo json_encode($data);
+        echo json_encode( $entry->result_object());
         // $this->main_html("draw", null);
     }
 
@@ -49,8 +49,7 @@ class Home extends MY_Controller {
         $where = array("promo_desc" => $this->input->post("category"));
         $entry = $this->entry_model->get($where, $this->input->post("winners"),"rand()");
         $prize_desc = $this->input->post("prize_type");
-        var_dump($prize_desc);
-        return;
+ 
         foreach ($entry->result_object() as $key => $value) {    
             $data = array(  "pk"          => $value->pk,
                             "prize_desc"  => $prize_desc,
@@ -59,7 +58,9 @@ class Home extends MY_Controller {
             $this->draw_model->add($data);
             $this->load->model('draw_model');
         }
-        
+        $msg  = "<strong>UPLOAD SUCCESSFUL. </strong> <br>";
+        $data["err"] = array("code"=>"00", "msg"=>$msg);
+        $this->main_html("draw", $data);
         return;
         // echo json_encode($entry->result_object());
     }
