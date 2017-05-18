@@ -38,7 +38,7 @@ class Home extends MY_Controller {
         $entry = $this->entry_model->get($where, $this->input->post("winners"), "record_id", "rand");
         $data["entry"] = $entry->result_object();
 
-        echo json_encode( $entry->result_object());
+        echo json_encode($entry->result_object());
         // $this->main_html("draw", null);
     }
 
@@ -48,21 +48,19 @@ class Home extends MY_Controller {
         
         $where = array("promo_desc" => $this->input->post("category"));
         $entry = $this->entry_model->get($where, $this->input->post("winners"),"rand()");
-        $prize_desc = $this->input->post("prize_type");
- 
-        foreach ($entry->result_object() as $key => $value) {    
-            $data = array(  "pk"          => $value->pk,
-                            "prize_desc"  => $prize_desc,
-                            "draw_date"   => date("Y-m-d")
-                             );
-            $this->draw_model->add($data);
-            $this->load->model('draw_model');
-        }
-        $msg  = "<strong>UPLOAD SUCCESSFUL. </strong> <br>";
-        $data["err"] = array("code"=>"00", "msg"=>$msg);
-        $this->main_html("draw", $data);
+        $data["entry"]= $entry->result_object();
+        var_dump($entry);
         return;
-        // echo json_encode($entry->result_object());
+        foreach ($data as $key => $value) { 
+            $draw = array(  "record_id"   => "",
+                            "pk"          => $value->pk,
+                            "prize_desc"  => $this->input->post("prize_type"),
+                            "draw_date"   => date("Y-m-d")
+                          );
+            $this->load->model('draw_model');
+            $this->draw_model->add($draw);           
+        } 
+        return;
     }
 
     public function prizes()

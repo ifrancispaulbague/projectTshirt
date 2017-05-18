@@ -82,8 +82,6 @@ $("#btnDraw").click(function() {
 	});
 });
 
-
-          
 //------- Confirm Winners -------//
 $("#btnConfirm").click(function() {
 	$.ajax({
@@ -94,12 +92,10 @@ $("#btnConfirm").click(function() {
 				prize_type:$("#prize_type option:selected").text(),
 				category:$("#category option:selected").val()
 			},
-			success: function(data){
-					
+			success: function(data){		
 			}
 		});
-
-    //$("#draw_form").attr('action', '<?=base_url()?>home/confirm_draw').submit();
+	
 });
 //--//
 
@@ -113,6 +109,7 @@ $("#btnEntry").click(function() {
     $("#entry_form").attr('action', '<?=base_url()?>home/upload_entries').submit();
 });
 //--//
+
 $("#category").change(function() {
 	$("#promo_desc").val($("#category option:selected").text());
 });
