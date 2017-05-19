@@ -59,36 +59,28 @@ $("#prize_type").change(function(){
 
 //------- Select Winner From Entries -------//
 $("#btnDraw").click(function() {
-	// var category	=	$("#category option:selected").text();
- // var prize_category	=	$("#prize_category option:selected").val();
-	// var prize_type	=	$("#prize_type option:selected").val();
-	// alert(category);
-	// if(category = "Major"){
-	// 		type.set
-	// }	
-	// $("#tbl_winners").show();
-		$.ajax({
-			type: "POST",
-			url: "<?=base_url()?>home/draw_winners", //controller
-			data: { 
-				category:$("#category option:selected").text(),
-				winners:$("#winners").val()
-			},
-			success: function(data){
-				var obj = $.parseJSON(data);
-				for (i = 0; i < obj.length; i++) {
-					$("#tbody_winner").append(
-						"<tr>",
-                      "<td style='text-align:center'>"+obj[i].promo_desc +"</td>",
-                      "<td style='text-align:center'>"+obj[i].pk +"</td>",
-                      "<td style='text-align:center'>"+obj[i].product +"</td>",
-                      "<td style='text-align:center'>"+obj[i].description +"</td>",
-                      "<td style='text-align:center'>"+obj[i].tran_date +"</td>",
-                      "<td style='text-align:center'>"+obj[i].upload_date +"</td>",               
-            "</tr>",
-            );
-          }
-			}
+	$.ajax({
+		type: "POST",
+		url: "<?=base_url()?>home/draw_winners", //controller
+		data: { 
+			category:$("#category option:selected").text(),
+			winners:$("#winners").val()
+		},
+		success: function(data){
+			var obj = $.parseJSON(data);
+			for (i = 0; i < obj.length; i++) {
+				$("#tbody_winner").append(
+					"<tr>",
+					"<td style='text-align:center'>"+obj[i].promo_desc +"</td>",
+					"<td style='text-align:center'>"+obj[i].pk +"</td>",
+					"<td style='text-align:center'>"+obj[i].product +"</td>",
+					"<td style='text-align:center'>"+obj[i].description +"</td>",
+					"<td style='text-align:center'>"+obj[i].tran_date +"</td>",
+					"<td style='text-align:center'>"+obj[i].upload_date +"</td>",               
+        			"</tr>"
+        		);
+      		}
+		}
 	});
 });
 
