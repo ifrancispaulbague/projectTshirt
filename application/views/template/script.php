@@ -47,10 +47,15 @@ $("#prize_type").change(function(){
 });
 
 $("#prize_type").change(function(){
-	var count = $(this).val();
- 	$('#confirm').val();
+	var desc = $("#prize_type option:selected").text();
+ 	$('#confirm').val(desc);
 });
-//--//
+
+$("#prize_type").change(function(){
+	var count = $(this).val();
+ 	$('#limit').val(count);
+});
+//------------------------------------------//
 
 //------- Select Winner From Entries -------//
 $("#btnDraw").click(function() {
@@ -122,10 +127,9 @@ $("#btnReport").click(function() {
 			criteria: $("#extract").val()
 		},
 		success: function(data) {
-			//
+			
 		}
 	});
-    // $("#tbl_reports").show();
 });
 
 </script>

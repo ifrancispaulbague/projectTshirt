@@ -19,7 +19,7 @@ class Home extends MY_Controller {
     public function draw()
     {
         $data["err"] = array("code"=>"", "msg"=>"");
-        $this->main_html("draw", null);
+        $this->main_html("draw", $data);
     }
 
     public function draw_winners()
@@ -31,7 +31,6 @@ class Home extends MY_Controller {
         $data["entry"] = $entry->result_object();
 
         echo json_encode($entry->result_object());
-        // $this->main_html("draw", null);
     }
 
     public function confirm_draw()
@@ -39,17 +38,19 @@ class Home extends MY_Controller {
         $this->load->model('entry_model');
         
         $where = array("promo_desc" => $this->input->post("category"));
-        $entry = $this->entry_model->get($where, $this->input->post("winners"),"rand()");
+        $entry = $this->entry_model->get($where, $this->input->post("limit"),"rand()");
         $data["entry"] = $entry->result_object();
-   
+        $desc = $this->input->post("confirm");
+
         foreach ($entry->result_object() as $key => $value) { 
             $data = array(  "pk"          => $value->pk,
-                            "prize_desc"  => $this->input->post("prize_type"),
+                            "prize_desc"  => $this->input->post("confirm"),
                             "draw_date"   => date("Y-m-d")
                           );
             $this->load->model('draw_model');
             $this->draw_model->add($data);           
         } 
+        redirect(base_url().'home/draw');
         return;
     }
 
