@@ -48,17 +48,15 @@ class Home extends MY_Controller {
         
         $where = array("promo_desc" => $this->input->post("category"));
         $entry = $this->entry_model->get($where, $this->input->post("winners"),"rand()");
-        $data["entry"]= $entry->result_object();
-        var_dump($entry);
-        return;
-        foreach ($data as $key => $value) { 
-            $draw = array(  "record_id"   => "",
-                            "pk"          => $value->pk,
+        $data["entry"] = $entry->result_object();
+   
+        foreach ($entry->result_object() as $key => $value) { 
+            $data = array(  "pk"          => $value->pk,
                             "prize_desc"  => $this->input->post("prize_type"),
                             "draw_date"   => date("Y-m-d")
                           );
             $this->load->model('draw_model');
-            $this->draw_model->add($draw);           
+            $this->draw_model->add($data);           
         } 
         return;
     }

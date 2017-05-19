@@ -97,6 +97,14 @@
             <button class="btn btn-info pull-left" id="btnConfirm" name="btnConfirm" type="button" >
               Confirm
             </button>
+
+            <div class="box-body" id='div_confirm' hidden>
+            <label class="col-sm-2 control-label">No. of Winners</label>
+                <div class="col-sm-5">
+                    <input type="text" id="confirm" name="confirm" class="col-sm-5">
+                </div>
+            </div>
+
           </div>
       </div>
     </form>

@@ -45,6 +45,11 @@ $("#prize_type").change(function(){
 	var count = $(this).val();
  	$('#winners').val(count);
 });
+
+$("#prize_type").change(function(){
+	var count = $(this).val();
+ 	$('#confirm').val();
+});
 //--//
 
 //------- Select Winner From Entries -------//
@@ -84,18 +89,7 @@ $("#btnDraw").click(function() {
 
 //------- Confirm Winners -------//
 $("#btnConfirm").click(function() {
-	$.ajax({
-			type: "POST",
-			url: "<?=base_url()?>home/confirm_draw", //controller
-			data: { 
-				// prize_category:prize_category
-				prize_type:$("#prize_type option:selected").text(),
-				category:$("#category option:selected").val()
-			},
-			success: function(data){		
-			}
-		});
-	
+	$("#draw_form").attr('action', '<?=base_url()?>home/confirm_draw').submit();
 });
 //--//
 
