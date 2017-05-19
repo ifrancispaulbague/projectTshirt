@@ -18,15 +18,7 @@ class Home extends MY_Controller {
 
     public function draw()
     {
-        // $this->load->model('entry_model');
-        // $this->load->model('draw_model');
-        // $where = array("promo_desc" => $this->input->post("category"));
-        // // var_dump($this->input->post("winners"));return;
-        // $entry = $this->entry_model->get($where, $this->input->post("winners"),"record_id","rand");
-        // // var_dump($entry);
-        // // return;
-        // $data["entry"] = $entry->result_object();
-
+        $data["err"] = array("code"=>"", "msg"=>"");
         $this->main_html("draw", null);
     }
 
