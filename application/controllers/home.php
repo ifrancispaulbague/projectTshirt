@@ -32,8 +32,8 @@ class Home extends MY_Controller {
 
         $limit = $this->input->post("winners");
 
-        $raffle = $this->entry_model->get($where, $limit, "record_id", "rand");
-        
+        $raffle = $this->entry_model->get($where, $limit, "record_id", "RANDOM");
+
         if ($this->db->_error_message()) {
             syslogs(date("Y-m-d H:i:s")." :: Database error: ".$this->db->_error_message(), "DRAW");
             echo json_encode(array("code"=> "99", "msg"=>"DATABASE ERROR. PLEASE CONTACT ADMINISTRATOR."));
@@ -57,7 +57,17 @@ class Home extends MY_Controller {
         $this->load->model('entry_model');
         foreach ($ids as $key => $value) {
             if ($value) {
-                $this->entry_model->edit(array("record_id"=>$value), array("status"=>1));
+                // check if minor or major prize
+                if ($this->input->post("prize_category") == "minor") {
+                    $data = array("minor_prize" => $this->input->post("prize_type"),
+                                  "status"      => 1);
+                } else {
+                    $data = array("major_prize" => $this->input->post("prize_type"),
+                                  "status"      => 1);
+                }
+
+                // update raffle entries
+                $this->entry_model->edit(array("record_id"=>$value), $data);
 
                 if ($this->db->_error_message()) {
                     $log  = date("Y-m-d H:i:s")." :: Database error: ".$this->db->_error_message()." || ";
@@ -73,42 +83,47 @@ class Home extends MY_Controller {
                 }
             }
         }
+
+        $data["err"] = array("code"=>"00", "msg"=>"SUCCESSFUL. CONFIRMED WINNERS: ".$winners);
+        $this->main_html("draw", $data);
         return;
         
-        $where = array("record_id" => $this->input->post("category"));
-        $entry = $this->entry_model->get($where, $this->input->post("limit"),"rand()");
-        $data["entry"] = $entry->result_object();
-        $desc = $this->input->post("confirm");
+        // $where = array("record_id" => $this->input->post("category"));
+        // $entry = $this->entry_model->get($where, $this->input->post("limit"),"rand()");
+        // $data["entry"] = $entry->result_object();
+        // $desc = $this->input->post("confirm");
 
-        foreach ($entry->result_object() as $key => $value) { 
-            $data = array(  "pk"          => $value->pk,
-                            "prize_desc"  => $this->input->post("confirm"),
-                            "draw_date"   => date("Y-m-d")
-                          );
-            $this->load->model('draw_model');
-            $this->draw_model->add($data);           
-        } 
-        redirect(base_url().'home/draw');
-        return;
+        // foreach ($entry->result_object() as $key => $value) { 
+        //     $data = array(  "pk"          => $value->pk,
+        //                     "prize_desc"  => $this->input->post("confirm"),
+        //                     "draw_date"   => date("Y-m-d")
+        //                   );
+        //     $this->load->model('draw_model');
+        //     $this->draw_model->add($data);           
+        // } 
+        // redirect(base_url().'home/draw');
+        // return;
     }
 
     public function prizes()
     {
         $where = array("prize_type" => $this->input->post("category"),
-                        "status" => "A");
+                        "status"    => "A");
         $prizes = $this->prize_model->get($where);
 
         if ($this->db->_error_number()) {
-            // return $this->db->_error_message()
+            syslogs(date("Y-m-d H:i:s")." :: Database error: ".$this->db->_error_message(), "PRIZE");
+            echo json_encode(array("code"=> "99", "msg"=>"DATABASE ERROR. PLEASE CONTACT ADMINISTRATOR."));
             return;
         }
 
         if ($prizes->num_rows == 0) {
-            // return no record found
+            echo json_encode(array("code"=> "99", "msg"=>"NO AVAILABLE PRIZES."));
             return;
         }
 
-        echo json_encode($prizes->result_object());
+        echo json_encode(array("code"=> "00", "msg"=>$prizes->result_object()));
+        return;
     }
 
     public function entries()

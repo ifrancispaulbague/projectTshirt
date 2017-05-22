@@ -31,9 +31,14 @@ $("#prize_category").change(function(){
 		success: function(data){
 			var obj = $.parseJSON(data);
 
+			if (obj.code != "00") {
+				alert(obj.msg);
+				return;
+			}
+
 			$("#prize_type").empty().append("<option value='0'> --- Select --- </option>");
-			for (i = 0; i < obj.length; i++) {
-				$("#prize_type").append("<option value="+obj[i].winner_count+"> "+obj[i].prize_name+" </option>");
+			for (i = 0; i < obj.msg.length; i++) {
+				$("#prize_type").append("<option value='"+obj.msg[i].prize_id+"' data="+obj.msg[i].winner_count+"> "+obj.msg[i].prize_name+" </option>");
 			}
 			if ($("#prize_type").val() != "0") $("#prize_type").change();
 
@@ -42,13 +47,8 @@ $("#prize_category").change(function(){
 });
 
 $("#prize_type").change(function(){
-	var count = $(this).val();
+	var count = $("#prize_type option:selected").attr("data");
  	$('#winners').val(count);
-});
-
-$("#prize_type").change(function(){
-	var count = $(this).val();
- 	$('#limit').val(count);
 });
 //------------------------------------------//
 
@@ -77,7 +77,7 @@ $("#btnDraw").click(function() {
 			}
 
 			for (i = 0; i < obj.msg.length; i++) {
-				$("#tbody_winner").append(
+				$("#tbody_winner").empty().append(
 					"<tr>",
 					"<td style='text-align:center'>"+obj.msg[i].pk +"</td>",
 					"<td style='text-align:center'>"+obj.msg[i].product +"</td>",
@@ -132,6 +132,10 @@ $("#btnReport").click(function() {
 			
 		}
 	});
+});
+
+$("#btnCancel").click(function() {
+	window.location.href = window.location.href;
 });
 
 </script>

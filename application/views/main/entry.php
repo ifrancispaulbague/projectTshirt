@@ -31,9 +31,8 @@
         </form>
 
         <div class="box-footer">
-            <button class="btn btn-info pull-left" id="btnEntry" name="btnEntry" type="button">
-                SUBMIT
-            </button>
+            <button class="btn btn-info pull-left" id="btnEntry" name="btnEntry" type="button"> SUBMIT </button>
+            <button class="btn btn-default pull-left" id="btnCancel" name="btnCancel" type="button"> CANCEL </button>
         </div>
     </div>
 </div>
