@@ -68,10 +68,10 @@
                     <table class="table table-bordered table-hover table-striped" id="tbl_winners">
                         <thead>
                             <tr> 
-                                <th style='text-align:center'><h3>PK</h3></th>
+                                <th style='text-align:center'><h3>PanaloKard No.</h3></th>
                                 <th style='text-align:center'><h3>Product</h3></th>
                                 <th style='text-align:center'><h3>Description</h3></th>
-                                <th style='text-align:center'><h3>Transaction Date</h3></th>
+                                <th style='text-align:center'><h3>Tran Date</h3></th>
                             </tr>
                         </thead>
                         <tbody id="tbody_winner">
