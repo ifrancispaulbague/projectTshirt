@@ -22,6 +22,11 @@
 
 <script type="text/javascript">
 //------- Selecting Prize Type -------//
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+    $('[data-toggle="popover"]').popover();
+});
+
 $("#prize_category").change(function(){
 	var category	=	$("#prize_category option:selected").val();
 	$.ajax({
@@ -79,10 +84,10 @@ $("#btnDraw").click(function() {
 			for (i = 0; i < obj.msg.length; i++) {
 				$("#tbody_winner").empty().append(
 					"<tr>",
-					"<td style='text-align:center'>"+obj.msg[i].pk +"</td>",
-					"<td style='text-align:center'>"+obj.msg[i].product +"</td>",
-					"<td style='text-align:center'>"+obj.msg[i].description +"</td>",
-					"<td style='text-align:center'>"+obj.msg[i].tran_date +"</td>",
+					"<td style='text-align:center'><h3>"+obj.msg[i].pk +"</h3></td>",
+					"<td style='text-align:center'><h3>"+obj.msg[i].product +"</h3></td>",
+					"<td style='text-align:center'><h3>"+obj.msg[i].description +"</h3></td>",
+					"<td style='text-align:center'><h3>"+obj.msg[i].tran_date +"</h3></td>",
         			"</tr>"
         		);
         		IDs = IDs + obj.msg[i].record_id + "|";
@@ -138,4 +143,5 @@ $("#btnCancel").click(function() {
 	window.location.href = window.location.href;
 });
 
+$('a').tooltip({ selector: '[data-toggle="tooltip"]' })
 </script>
