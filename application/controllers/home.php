@@ -13,7 +13,9 @@ class Home extends MY_Controller {
 
     public function index()
     {
-        $this->main_html("homepage", null);
+        // $this->main_html("homepage", null);
+        $data["err"] = array("code"=>"", "msg"=>"");
+        $this->main_html("login", $data);
     }
 
     public function draw()
