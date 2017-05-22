@@ -31,7 +31,7 @@ $("#prize_category").change(function(){
 		success: function(data){
 			var obj = $.parseJSON(data);
 
-			$("#prize_type").empty().append("<option value='0'> select </option>");
+			$("#prize_type").empty().append("<option value='0'> --- Select --- </option>");
 			for (i = 0; i < obj.length; i++) {
 				$("#prize_type").append("<option value="+obj[i].winner_count+"> "+obj[i].prize_name+" </option>");
 			}
@@ -47,11 +47,6 @@ $("#prize_type").change(function(){
 });
 
 $("#prize_type").change(function(){
-	var desc = $("#prize_type option:selected").text();
- 	$('#confirm').val(desc);
-});
-
-$("#prize_type").change(function(){
 	var count = $(this).val();
  	$('#limit').val(count);
 });
@@ -59,6 +54,11 @@ $("#prize_type").change(function(){
 
 //------- Select Winner From Entries -------//
 $("#btnDraw").click(function() {
+	if ($("#category").val() == 0 || $("#prize_category").val() == 0 || $("#prize_type").val() == 0 || $("#winners").val() == "") {
+		alert("Please fill out all fields.");
+		return;
+	}
+
 	$.ajax({
 		type: "POST",
 		url: "<?=base_url()?>home/draw_winners", //controller
@@ -67,19 +67,29 @@ $("#btnDraw").click(function() {
 			winners:$("#winners").val()
 		},
 		success: function(data){
-			var obj = $.parseJSON(data);
-			for (i = 0; i < obj.length; i++) {
+			var obj = $.parseJSON(data),
+				IDs = "";
+
+			if (obj.code != "00") {
+      			$("#confirm_div").addClass("hide");
+				alert(obj.msg);
+				return;
+			}
+
+			for (i = 0; i < obj.msg.length; i++) {
 				$("#tbody_winner").append(
 					"<tr>",
-					"<td style='text-align:center'>"+obj[i].promo_desc +"</td>",
-					"<td style='text-align:center'>"+obj[i].pk +"</td>",
-					"<td style='text-align:center'>"+obj[i].product +"</td>",
-					"<td style='text-align:center'>"+obj[i].description +"</td>",
-					"<td style='text-align:center'>"+obj[i].tran_date +"</td>",
-					"<td style='text-align:center'>"+obj[i].upload_date +"</td>",               
+					"<td style='text-align:center'>"+obj.msg[i].pk +"</td>",
+					"<td style='text-align:center'>"+obj.msg[i].product +"</td>",
+					"<td style='text-align:center'>"+obj.msg[i].description +"</td>",
+					"<td style='text-align:center'>"+obj.msg[i].tran_date +"</td>",
         			"</tr>"
         		);
+        		IDs = IDs + obj.msg[i].record_id + "|";
       		}
+
+      		$("#record_id").val(IDs);
+      		$("#confirm_div").removeClass("hide");
 		}
 	});
 });

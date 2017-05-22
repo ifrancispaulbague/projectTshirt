@@ -26,18 +26,56 @@ class Home extends MY_Controller {
     {
         $this->load->model('entry_model');
         $this->load->model('draw_model');
-        $where = array("promo_desc" => $this->input->post("category"));
-        $entry = $this->entry_model->get($where, $this->input->post("winners"), "record_id", "rand");
-        $data["entry"] = $entry->result_object();
 
-        echo json_encode($entry->result_object());
+        $where = array("promo_desc" => $this->input->post("category"),
+                       "status"     => 0);
+
+        $limit = $this->input->post("winners");
+
+        $raffle = $this->entry_model->get($where, $limit, "record_id", "rand");
+        
+        if ($this->db->_error_message()) {
+            syslogs(date("Y-m-d H:i:s")." :: Database error: ".$this->db->_error_message(), "DRAW");
+            echo json_encode(array("code"=> "99", "msg"=>"DATABASE ERROR. PLEASE CONTACT ADMINISTRATOR."));
+            return;
+        }
+        
+        if ($raffle->num_rows == 0) {
+            echo json_encode(array("code"=>"99", "msg"=>"NO RAFFLE ENTRIES TO BE DRAWN."));
+            return;
+        }
+
+        echo json_encode(array("code"=>"00", "msg"=>$raffle->result_object()));
+        return;
     }
 
     public function confirm_draw()
     {
+        $winners = 0;
+        $ids = explode("|", $this->input->post("record_id"));
+
         $this->load->model('entry_model');
+        foreach ($ids as $key => $value) {
+            if ($value) {
+                $this->entry_model->edit(array("record_id"=>$value), array("status"=>1));
+
+                if ($this->db->_error_message()) {
+                    $log  = date("Y-m-d H:i:s")." :: Database error: ".$this->db->_error_message()." || ";
+                    $log .= "RECORD ID: ".$value."\n";
+                    syslogs($log, "WINNER");
+                }
+
+                if ($this->db->affected_rows() == 0) {
+                    $log = date("Y-m-d H:i:s")." :: Unable to update record id: ".$value."\n";
+                    syslogs($log, "WINNER");
+                } else {
+                    $winners++;
+                }
+            }
+        }
+        return;
         
-        $where = array("promo_desc" => $this->input->post("category"));
+        $where = array("record_id" => $this->input->post("category"));
         $entry = $this->entry_model->get($where, $this->input->post("limit"),"rand()");
         $data["entry"] = $entry->result_object();
         $desc = $this->input->post("confirm");

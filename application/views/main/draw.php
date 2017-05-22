@@ -13,7 +13,7 @@
     
         <div class="box-body">
             <label class="col-sm-2 control-label">Promo Title</label>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <select class="form-control" id="category" name="category">
                     <option value="0">--- SELECT ---</option>
                     <option value="upgrade">USSC PanaloWallet Upgrade</option>
@@ -24,18 +24,18 @@
         <!-- Content -->
         <div class="box-body" id='div_category'>
             <label class="col-sm-2 control-label">Prize Category</label>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <select class="form-control" id="prize_category" name="prize_category">
                     <option value="0">--- SELECT ---</option>
-                    <option value="Major">Major</option>
                     <option value="Minor">Minor</option>
+                    <option value="Major">Major</option>
                 </select>
             </div>
         </div>
 
         <div class="box-body" id='div_type'>
             <label class="col-sm-2 control-label">Prize Type</label>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <select class="form-control" id="prize_type" name="prize_type">
                     <option value="0">--- SELECT ---</option>
                 </select>
@@ -44,7 +44,7 @@
 
         <div class="box-body" id='div_winners'>
             <label class="col-sm-2 control-label">No. of Winners</label>
-            <div class="col-sm-5">
+            <div class="col-sm-4">
                 <input type="text" id="winners" name="winners" class="col-sm-5">
             </div>
         </div>
@@ -69,13 +69,10 @@
                     <table class="table table-bordered table-hover table-striped" id="tbl_winners">
                         <thead>
                             <tr> 
-                                <th style='text-align:center'>Record</th>
-                                <th style='text-align:center'>Promo</th>
                                 <th style='text-align:center'>PK</th>
                                 <th style='text-align:center'>Product</th>
                                 <th style='text-align:center'>Description</th>
                                 <th style='text-align:center'>Transaction Date</th>
-                                <th style='text-align:center'>Upload Date</th>
                             </tr>
                         </thead>
                         <tbody id="tbody_winner">
@@ -89,20 +86,8 @@
                         Confirm
                     </button>
                 </div>
-
-                <div class="box-body" id='div_confirm' hidden>
-                    <label class="col-sm-2 control-label"></label>
-                    <div class="col-sm-5">
-                        <input type="text" id="confirm" name="confirm" class="col-sm-5">
-                    </div>
-                </div>
-
-                <div class="box-body" id='div_confirm' hidden>
-                    <label class="col-sm-2 control-label">No. of Winners</label>
-                    <div class="col-sm-5">
-                        <input type="text" id="limit" name="limit" class="col-sm-5">
-                    </div>
-                </div>
+                
+                <input type="text" id="record_id" name="record_id" class="col-sm-5 hide">
             </div>
         </div>
     </form>
