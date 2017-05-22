@@ -87,22 +87,6 @@ class Home extends MY_Controller {
         $data["err"] = array("code"=>"00", "msg"=>"SUCCESSFUL. CONFIRMED WINNERS: ".$winners);
         $this->main_html("draw", $data);
         return;
-        
-        // $where = array("record_id" => $this->input->post("category"));
-        // $entry = $this->entry_model->get($where, $this->input->post("limit"),"rand()");
-        // $data["entry"] = $entry->result_object();
-        // $desc = $this->input->post("confirm");
-
-        // foreach ($entry->result_object() as $key => $value) { 
-        //     $data = array(  "pk"          => $value->pk,
-        //                     "prize_desc"  => $this->input->post("confirm"),
-        //                     "draw_date"   => date("Y-m-d")
-        //                   );
-        //     $this->load->model('draw_model');
-        //     $this->draw_model->add($data);           
-        // } 
-        // redirect(base_url().'home/draw');
-        // return;
     }
 
     public function prizes()
