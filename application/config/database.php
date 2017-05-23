@@ -45,6 +45,21 @@ $db['cif']['swap_pre'] = '';
 $db['cif']['autoinit'] = TRUE;
 $db['cif']['stricton'] = FALSE;
 
+$db['ucs']['hostname'] = 'ucs_host_db';
+$db['ucs']['username'] = 'ucs_user';
+$db['ucs']['password'] = 'pass123';
+$db['ucs']['database'] = 'ucs_db';
+$db['ucs']['dbdriver'] = 'mysql';
+$db['ucs']['dbprefix'] = '';
+$db['ucs']['pconnect'] = TRUE;
+$db['ucs']['db_debug'] = FALSE;
+$db['ucs']['cache_on'] = FALSE;
+$db['ucs']['cachedir'] = '';
+$db['ucs']['char_set'] = 'utf8';
+$db['ucs']['dbcollat'] = 'utf8_general_ci';
+$db['ucs']['swap_pre'] = '';
+$db['ucs']['autoinit'] = TRUE;
+$db['ucs']['stricton'] = FALSE;
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */

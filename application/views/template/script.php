@@ -21,6 +21,36 @@
 <script src="<?=base_url()?>assets/admin_lte/dist/js/demo.js"></script>
 
 <script type="text/javascript">
+
+// log in
+$("#sign_in").click(function() {
+	if ($("#user").val() == "" || $("#pwd").val() == "") {
+		alert("Please fill out all fields.");
+		return;
+	}
+
+	$("#message").removeClass("hide");
+	$("#bar_div").removeClass("hide");
+	$("#loading_bar").animate({ "width": "75%" }, "slow");
+
+	$.ajax({
+		type: "POST",
+		url: "<?=base_url()?>home/login",
+		data: {
+			user: $("#user").val(),
+			pwd: $("#pwd").val()
+		},
+		success: function(data) {
+			var obj = $.parseJSON(data);
+			alert(obj.code);
+		}
+	});
+});
+
+$("#user, #pwd").bind("keypress",function(e){
+    if(e.which === 13) $("#sign_in").click();
+});
+
 //------- Selecting Prize Type -------//
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip(); 

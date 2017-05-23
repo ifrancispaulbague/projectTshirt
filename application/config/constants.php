@@ -13,6 +13,7 @@
 define('TITLE',					'USSC - RAFFLE');
 define('HOST_URL',				$_SERVER['SERVER_NAME']);
 define('USSC_WEBSITE',			'http://www.ussc.com.ph/');
+define('LOGIN_API',				'http://icash_api:1888/UCS_LOGIN');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
