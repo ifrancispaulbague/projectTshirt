@@ -27,12 +27,11 @@
             </div>
         </div>
         <div class="box-footer">
-            <button class="btn btn-info pull-left" id="btnReport" name="btnReport" type="button" >
-                SUBMIT
-            </button>
-        </div>
+                <button class="btn btn-info pull-left btn-sm" id="btnReport" name="btnReport" type="button" >
+                    SUBMIT
+                </button>
+            </div>
 
-        <div class="box-body"> 
             <div class="box-body table-responsive">   
                 <table class="table table-bordered table-hover table-striped" id="tbl_reports" hidden>
                     <thead>
@@ -42,6 +41,6 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+       
     </div>
 </div>

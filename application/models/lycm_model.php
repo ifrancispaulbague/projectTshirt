@@ -14,21 +14,16 @@ class Lycm_model extends MY_Model {
     public function __construct()
     {
         parent::__construct();
+        $this->db2 = $this->load->database("cif", TRUE);
     }
 
-    public function getName($where) {
+    public function getName($where_customer) {
 
-        // $this->db->select('*');
-        // $this->db->from($this->table);
-        // $this->db->where("PK" => '123');
-        // $query = $this->db->get($where);
-  
-        // $this->db->select('b.CustomerFName, b.CustomerLName');
-        // $this->db->from('LYCM a');
-        // $this->db->join('CUSM b', 'a.CUSM_CustomerNo = b.CustomerNo', 'INNER');
-        // $this->db->where("PK"=>'123');
-        // return $this->db->get();
-
+        $this->db2->select('b.CustomerFName, b.CustomerLName');
+        $this->db2->from('LYCM a');
+        $this->db2->join('CUSM b', 'a.CUSM_CustomerNo = b.CustomerNo', 'INNER');
+        $this->db2->where($where_customer);
+        return $this->db2->get();
 
     }
 

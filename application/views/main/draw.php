@@ -52,9 +52,14 @@
             <!-- End of Content -->
 
             <div class="box-footer">
-                <button class="btn btn-info pull-left" id="btnDraw" name="btnDraw" type="button"> SUBMIT </button>
-                <button class="btn btn-default pull-left" id="btnCancel" name="btnCancel" type="button"> CANCEL </button>
+              <div class="box-content col-sm-1">
+                <button class="btn btn-info pull-left btn-sm" id="btnDraw" name="btnDraw" type="button"> SUBMIT </button>
+              </div>
+              <div class="box-content">
+                <button class="btn btn-default pull-left btn-sm" id="btnCancel" name="btnCancel" type="button"> CANCEL </button>
+              </div>
             </div>
+
         </div>
 
         <!-- Confirm Add Entries -->
@@ -69,6 +74,7 @@
                         <thead>
                             <tr> 
                                 <th style='text-align:center'><h3>PanaloKard No.</h3></th>
+                                <th style='text-align:center'><h3>Customer</h3></th>
                                 <th style='text-align:center'><h3>Product</h3></th>
                                 <th style='text-align:center'><h3>Description</h3></th>
                                 <th style='text-align:center'><h3>Tran Date</h3></th>
@@ -80,8 +86,8 @@
                     </table>
                 </div>
 
-                <div class="box-footer">
-                    <button class="btn btn-info pull-left" id="btnConfirm" name="btnConfirm" type="button">
+                <div class="box-footer col-sm-1">
+                    <button class="btn btn-info pull-left btn-sm" id="btnConfirm" name="btnConfirm" type="button">
                         Confirm
                     </button>
                 </div>

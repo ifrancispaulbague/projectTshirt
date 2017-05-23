@@ -33,7 +33,6 @@ class Home extends MY_Controller {
     {
         $this->load->model('entry_model');
         $this->load->model('draw_model');
-        $this->load->model('cusm_model');
         $this->load->model('lycm_model');
 
         $where = array("promo_desc" => $this->input->post("category"),
@@ -53,38 +52,21 @@ class Home extends MY_Controller {
             echo json_encode(array("code"=>"99", "msg"=>"NO RAFFLE ENTRIES TO BE DRAWN."));
             return;
         }
+          
+        foreach ($raffle->result_object() as $key => $value){
+          $where_customer = array('a.PanaloKardNo' => $value->pk);
+          $customer = $this->lycm_model->getName($where_customer); 
+      
+          $result[] = array("pk"=>$value->pk,
+                            "fname"=>$customer->result_object()[0]->CustomerFName,
+                            "lname"=>$customer->result_object()[0]->CustomerLName,
+                            "product" => $value->product,
+                            "description" => $value->promo_desc,
+                            "tran_date" => date("Y-m-d")
+                            );
+        }
 
-        // $this->db->select('*');
-        // $this->db->from('lycm_model');
-        // $this->db->join('cusm_model', 'lycm_model.CUSM_CustomerNo = cusm_model.CustomerNo', 'INNER');
-        // $query = $this->db->get();
-        // var_dump($query);
-        // break;
-
-        // $where = array("PanaloKardNo" => '123');
-        // $test = $this->lycm_model->get($where);
-        // var_dump($test->result_object());
-        // return; 
-
-        // $test2 = $this->lycm_model->getName();
-        // var_dump($test2);
-        // return;
-
-        // $where = array("PanaloKardNo" => '10123');
-        // $test = $this->cusm_model->get($where);
-
-        // foreach ($query->result_object() as $key => $value){
-        //   $where_lycm = array("pk" => $value->pk);
-        //   $customer = $this->cusm_model->get($where);
-        //     $data = array("pk"=> $value->pk,
-        //                   "name"=> $value->CustomerFName,
-        //                   "product"=> $value->product,
-        //                   "desc"=>  $value->desc,
-        //                   "date"=> date("Y-m-d")
-        //     );
-        // }
-
-        echo json_encode(array("code"=>"00", "msg"=>$raffle->result_object()));
+        echo json_encode(array("code"=>"00", "msg"=>$result));
         return;
     }
 

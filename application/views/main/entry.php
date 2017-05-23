@@ -31,8 +31,13 @@
         </form>
 
         <div class="box-footer">
-            <button class="btn btn-info pull-left" id="btnEntry" name="btnEntry" type="button"> SUBMIT </button>
-            <button class="btn btn-default pull-left" id="btnCancel" name="btnCancel" type="button"> CANCEL </button>
+          <div class="box-content col-sm-1">
+            <button class="btn btn-info pull-left btn-sm" id="btnEntry" name="btnEntry" type="button"> SUBMIT </button>
+          </div>
+          <div class="box-content">
+            <button class="btn btn-default pull-left btn-sm" id="btnCancel" name="btnCancel" type="button"> CANCEL </button>
+          </div>
         </div>
+
     </div>
 </div>

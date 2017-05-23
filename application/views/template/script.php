@@ -85,6 +85,7 @@ $("#btnDraw").click(function() {
 				$("#tbody_winner").empty().append(
 					"<tr>",
 					"<td style='text-align:center'><h3>"+obj.msg[i].pk +"</h3></td>",
+					"<td style='text-align:center'><h3>"+obj.msg[i].fname+" "+obj.msg[i].lname+"</h3></td>",
 					"<td style='text-align:center'><h3>"+obj.msg[i].product +"</h3></td>",
 					"<td style='text-align:center'><h3>"+obj.msg[i].description +"</h3></td>",
 					"<td style='text-align:center'><h3>"+obj.msg[i].tran_date +"</h3></td>",
