@@ -18,6 +18,11 @@ class Home extends MY_Controller {
         // $this->main_html("login", $data);
     }
 
+    public function login()
+    {
+        //
+    }
+
     public function draw()
     {
         $data["err"] = array("code"=>"", "msg"=>"");
@@ -157,6 +162,28 @@ class Home extends MY_Controller {
 
     public function upload_entries()
     {
+        // check if file is already uploaded
+        $where = array("file_name"=>$_FILES['filename']['name'], "upload_date"=>date("Y-m-d"));
+        $this->load->model("file_model");
+        $find_file = $this->file_model->get($where);
+
+        // check if there is a database error
+        if ($this->db->_error_number()) {
+            $log  = date("Y-m-d H:i:s")." :: Database error: ".$this->db->_error_message()." || ";
+            $log .= "FILE: ".$_FILES['filename']['name']."\n";
+            syslogs($log, "ENTRY");
+
+            $entries["err"] = array("code"=>"99", "msg"=>"DATABASE ERROR. PLEASE CONTACT ADMINISTRATOR.");
+            $this->main_html("entry", $entries);
+            return;
+        }
+
+        if ($find_file->num_rows > 0) {
+            $entries["err"] = array("code"=>"99", "msg"=>"FILE WAS ALREADY UPLOADED.");
+            $this->main_html("entry", $entries);
+            return;
+        }
+
         $csv_filename = $_FILES['filename']['tmp_name'];
 
         $file       = fopen($csv_filename, 'r');
@@ -164,20 +191,25 @@ class Home extends MY_Controller {
         $uploaded   = 0;
         $unuploaded = 0;
 
+        // save entries to database
+        $this->db->trans_begin();
         while (($line = fgetcsv($file)) !== FALSE) {
             $ctr += 1;
             if ($ctr != 1) {
                 $entries = array("promo_desc"  => $this->input->post("promo_desc"),
-                              "pk"          => $line[0],
-                              "product"     => $line[2],
-                              "description" => $line[3],
-                              "tran_date"   => $line[1],
-                              "upload_date" => date("Y-m-d H:i:s")
+                                 "pk"          => $line[0],
+                                 "product"     => $line[2],
+                                 "description" => $line[3],
+                                 "tran_date"   => $line[1],
+                                 "upload_date" => date("Y-m-d H:i:s")
                              );
                 $this->load->model("entry_model");
                 $add_entry = $this->entry_model->add($entries);
 
+                // check if there is a database error
                 if ($this->db->_error_number()) {
+                    $this->db->trans_rollback();
+
                     $log  = date("Y-m-d H:i:s")." :: Database error: ".$this->db->_error_message()." || ";
                     $log .= "PANALOKARD: ".$line[0]."\n";
                     syslogs($log, "ENTRY");
@@ -187,21 +219,56 @@ class Home extends MY_Controller {
                     return;
                 }
 
+                // check if a record is not inserted
                 if (!$add_entry) {
+                    $this->db->trans_rollback();
+
                     $log  = date("Y-m-d H:i:s")." :: ";
                     $log .= "Insert error: ".$this->db->_error_message()." || PANALOKARD: ".$line[0]."\n";
                     syslogs($log, "ENTRY");
-                    $unuploaded++;
-                } else {
-                    $uploaded++;
+                    
+                    $entries["err"] = array("code"=>"99", "msg"=>"UNABLE TO SAVE RAFFLE ENTRIES. PLEASE TRY AGAIN.");
+                    $this->main_html("entry", $entries);
+                    return;
                 }
             }
         }
 
-        $msg  = "<strong>UPLOAD SUCCESSFUL. </strong> <br>";
-        $msg .= "Total entries uploaded: ".$uploaded."<br>";
-        $msg .= "Error uploading: ".$unuploaded;
-        $data["err"] = array("code"=>"00", "msg"=>$msg);
+        // save file to database
+        $file_upload = array("file_name"   => $_FILES['filename']['name'],
+                             "upload_by"   => "39126",
+                             "upload_date" => date("Y-m-d"));
+
+        $add_file = $this->file_model->add($file_upload);
+
+        // check if there is a database error
+        if ($this->db->_error_number()) {
+            $this->db->trans_rollback();
+
+            $log  = date("Y-m-d H:i:s")." :: Database error: ".$this->db->_error_message()." || ";
+            $log .= "FILE: ".$_FILES['filename']['name']."\n";
+            syslogs($log, "ENTRY");
+
+            $entries["err"] = array("code"=>"99", "msg"=>"DATABASE ERROR. PLEASE CONTACT ADMINISTRATOR.");
+            $this->main_html("entry", $entries);
+            return;
+        }
+
+        // check if a record is not inserted
+        if (!$add_file) {
+            $this->db->trans_rollback();
+
+            $log  = date("Y-m-d H:i:s")." :: ";
+            $log .= "Insert error: ".$this->db->_error_message()." || FILE: ".$_FILES['filename']['name']."\n";
+            syslogs($log, "ENTRY");
+            
+            $entries["err"] = array("code"=>"99", "msg"=>"UNABLE TO SAVE RAFFLE ENTRIES. PLEASE TRY AGAIN.");
+            $this->main_html("entry", $entries);
+            return;
+        }
+
+        $this->db->trans_commit();
+        $data["err"] = array("code"=>"00", "msg"=>"UPLOAD SUCCESSFUL.");
         $this->main_html("entry", $data);
         return;
     }

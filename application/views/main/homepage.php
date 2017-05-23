@@ -5,7 +5,7 @@
         <table class="table text-center" align="center">
             <tr>
                 <th>RAFFLE ENTRIES</th>
-                <th>RAFFLE DRAW</th>
+                <th>DRAW LOTS</th>
                 <th>REPORTS</th>
             </tr>
             <tr>
