@@ -22,12 +22,23 @@
 
 <script type="text/javascript">
 //--- popup text on hover ---//
+
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip(); 
     $('[data-toggle="popover"]').popover();
 });
 
 $('a').tooltip({ selector: '[data-toggle="tooltip"]' });
+
+// Template.AdminLTE.rendered = function() {
+// 	$(document).ready(function(){
+// 	    $('[data-toggle="tooltip"]').tooltip(); 
+// 	    $('[data-toggle="popover"]').popover();
+// 	});
+// };
+
+// $('a').tooltip({ selector: '[data-toggle="tooltip"]' });
+
 //---       ---//
 //------- Selecting Prize Type -------//
 
@@ -90,16 +101,15 @@ $("#btnDraw").click(function() {
 
 			//insert data to table
 			for (i = 0; i < obj.msg.length; i++) {
-				console.log(i);
 				$("#tbody_winner").append(
 					"<tr>",
-					"<td style='text-align:center'><h3>"+obj.msg[i].pk+"</h3></td>",
-					"<td style='text-align:center'><h3>"+obj.msg[i].fname+" "+obj.msg[i].lname+"</h3></td>",
-					"<td style='text-align:center'><h3>"+obj.msg[i].product +"</h3></td>",
-					"<td style='text-align:center'><h3>"+obj.msg[i].description +"</h3></td>",
-					"<td style='text-align:center'><h3>"+obj.msg[i].tran_date +"</h3></td>",
-        			"</tr>"
-        		);
+						"<td style='text-align:center'><h3>"+obj.msg[i].pk+"</h3></td>",
+						"<td style='text-align:center'><h3>"+obj.msg[i].fname+" "+obj.msg[i].lname+"</h3></td>",
+						"<td style='text-align:center'><h3>"+obj.msg[i].product +"</h3></td>",
+						"<td style='text-align:center'><h3>"+obj.msg[i].description +"</h3></td>",
+						"<td style='text-align:center'><h3>"+obj.msg[i].tran_date +"</h3></td>",
+        	"</tr>"
+        	);
         		IDs = IDs + obj.msg[i].record_id + "|";
       		}
 
