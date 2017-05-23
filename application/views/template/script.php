@@ -143,5 +143,5 @@ $("#btnCancel").click(function() {
 	window.location.href = window.location.href;
 });
 
-$('a').tooltip({ selector: '[data-toggle="tooltip"]' })
+$('a').tooltip({ selector: '[data-toggle="tooltip"]' });
 </script>
