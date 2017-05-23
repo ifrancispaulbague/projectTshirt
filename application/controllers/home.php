@@ -89,6 +89,7 @@ class Home extends MY_Controller {
 
         $limit = $this->input->post("winners");
 
+        //get entries randomly
         $raffle = $this->entry_model->get($where, $limit, "record_id", "RANDOM");
 
         if ($this->db->_error_message()) {
@@ -101,9 +102,10 @@ class Home extends MY_Controller {
             echo json_encode(array("code"=>"99", "msg"=>"NO RAFFLE ENTRIES TO BE DRAWN."));
             return;
         }
-        
-        //get entries 
+
+        //get entries info
         foreach ($raffle->result_object() as $key => $value){
+
           $where_customer = array('a.PanaloKardNo' => $value->pk);
           $customer = $this->lycm_model->getName($where_customer); 
       

@@ -21,11 +21,15 @@
 <script src="<?=base_url()?>assets/admin_lte/dist/js/demo.js"></script>
 
 <script type="text/javascript">
-//------- Selecting Prize Type -------//
+//--- popup text on hover ---//
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip(); 
     $('[data-toggle="popover"]').popover();
 });
+
+$('a').tooltip({ selector: '[data-toggle="tooltip"]' });
+//---       ---//
+//------- Selecting Prize Type -------//
 
 $("#prize_category").change(function(){
 	var category	=	$("#prize_category option:selected").val();
@@ -80,9 +84,11 @@ $("#btnDraw").click(function() {
 				alert(obj.msg);
 				return;
 			}
-			
+
+			//clear table
 			$("#tbody_winner").empty();
 
+			//insert data to table
 			for (i = 0; i < obj.msg.length; i++) {
 				console.log(i);
 				$("#tbody_winner").append(
@@ -147,5 +153,4 @@ $("#btnCancel").click(function() {
 	window.location.href = window.location.href;
 });
 
-$('a').tooltip({ selector: '[data-toggle="tooltip"]' });
 </script>
