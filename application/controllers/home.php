@@ -13,14 +13,17 @@ class Home extends MY_Controller {
 
     public function index()
     {
-        $this->main_html("homepage", null);
-        // $data["err"] = array("code"=>"", "msg"=>"");
-        // $this->main_html("login", $data);
+        // $this->main_html("homepage", null);
+        $data["err"] = array("code"=>"", "msg"=>"");
+        $this->main_html("login", $data);
     }
 
     public function login()
     {
-        //
+        var_dump($this->input->post());
+        $username    = rawurldecode($this->input->post("user"));
+        $password    = rawurldecode($this->input->post("pwd"));
+        $terminal_id = @$_SERVER["SSL_CLIENT_I_DN_OU"];
     }
 
     public function draw()
