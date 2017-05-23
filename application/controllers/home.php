@@ -20,10 +20,56 @@ class Home extends MY_Controller {
 
     public function login()
     {
-        var_dump($this->input->post());
         $username    = rawurldecode($this->input->post("user"));
         $password    = rawurldecode($this->input->post("pwd"));
         $terminal_id = @$_SERVER["SSL_CLIENT_I_DN_OU"];
+
+        $this->load->model("session_model");
+        $this->load->helper("text");
+            
+        $params = http_build_query(array(
+                        "UserId"      => $username,
+                        "Password"    => $password,
+                        "TerminalId"  => $terminal_id
+                       ));
+        
+        $url = LOGIN_API;  
+        $curl = curl_init(); 
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE);
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_URL, $url);
+
+        if (curl_errno($curl)) {
+            $log  = date("Y-m-d H:i:s")." :: Curl Error No: ".curl_errno($curl)." || ";
+            $log .= "Curl Error Description: ".curl_error($curl)."\n";
+            syslogs($log, "LOGIN");
+
+            echo json_encode(array("code"=>"99", "msg"=>"UNABLE TO CONNECT TO LOG IN API. PLEASE TRY AGAIN."));
+            return;
+        }
+
+        $result = curl_exec($curl);
+        $res    = json_decode($result);
+
+        if(isset($res->code) && ($res->code === "0" || $res->code === "2")) {
+            var_dump($this);
+            return;
+            $this->session->set_userdata("emp_no", $emp_no);
+            $this->session->set_userdata("cost_center", $terminal_id);
+
+            $encrypt_second = md5($this->session->userdata("emp_no").date("s"));
+            $this->session->set_userdata("rfs_session", $encrypt_second);
+            $this->user_session_model->save_session($this->session->userdata("emp_no"), $encrypt_second, $user_type);
+
+            echo json_encode(array("code"=>"00", "msg"=>"SUCCESSFULLY"));
+            return;
+        } else {
+            echo json_encode(array("code"=>"99", "msg"=>$res->message));
+            return;
+        }
     }
 
     public function draw()

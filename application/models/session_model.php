@@ -7,12 +7,11 @@ class Session_model extends CI_Model{
     public function __construct()
     {
         parent::__construct();
-    	$this->DB2 = $this->load->database('ucs_db', TRUE); 
+    	$this->DB2 = $this->load->database("ucs", TRUE); 
     }
 
     public function save_session($username, $session, $user_type)
     {
-
 		$data = array(
 			'username' 	=> $username,
 			'session' 	=> $session,

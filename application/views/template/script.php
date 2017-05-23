@@ -32,6 +32,7 @@ $("#sign_in").click(function() {
 	$("#message").removeClass("hide");
 	$("#bar_div").removeClass("hide");
 	$("#loading_bar").animate({ "width": "75%" }, "slow");
+
 	$.ajax({
 		type: "POST",
 		url: "<?=base_url()?>home/login",
@@ -40,10 +41,14 @@ $("#sign_in").click(function() {
 			pwd: $("#pwd").val()
 		},
 		success: function(data) {
-			//
+			var obj = $.parseJSON(data);
+			alert(obj.code);
 		}
 	});
+});
 
+$("#user, #pwd").bind("keypress",function(e){
+    if(e.which === 13) $("#sign_in").click();
 });
 
 //------- Selecting Prize Type -------//
