@@ -13,7 +13,6 @@ class Home extends MY_Controller {
 
     public function index()
     {
-        // $this->main_html("homepage", null);
         $data["err"] = array("code"=>"", "msg"=>"");
         $this->main_html("login", $data);
     }
@@ -54,22 +53,32 @@ class Home extends MY_Controller {
         $result = curl_exec($curl);
         $res    = json_decode($result);
 
-        if(isset($res->code) && ($res->code === "0" || $res->code === "2")) {
-            var_dump($this);
+        if ($res->userType == 3) {
+            echo json_encode(array("code"=>"99", "msg"=>"You are not allowed to log-in on this site!"));
             return;
-            $this->session->set_userdata("emp_no", $emp_no);
-            $this->session->set_userdata("cost_center", $terminal_id);
+        }
+
+        if(isset($res->code) && ($res->code === "0" || $res->code === "2")) {
+            $this->session->set_userdata("emp_no", $res->userId);
+            $this->session->set_userdata("cost_center", $res->branchCode);
+            $this->session->set_userdata("user_type", $res->userType);
 
             $encrypt_second = md5($this->session->userdata("emp_no").date("s"));
             $this->session->set_userdata("rfs_session", $encrypt_second);
-            $this->user_session_model->save_session($this->session->userdata("emp_no"), $encrypt_second, $user_type);
+            $this->session_model->save_session($this->session->userdata("emp_no"), $encrypt_second, $res->userType);
 
-            echo json_encode(array("code"=>"00", "msg"=>"SUCCESSFULLY"));
+            echo json_encode(array("code"=>"00", "msg"=>"Successfully logged in"));
             return;
         } else {
             echo json_encode(array("code"=>"99", "msg"=>$res->message));
             return;
         }
+    }
+
+    public function homepage()
+    {
+        $data["err"] = array("code"=>"", "msg"=>"");
+        $this->main_html("homepage", $data);
     }
 
     public function draw()
@@ -109,12 +118,12 @@ class Home extends MY_Controller {
           $where_customer = array('a.PanaloKardNo' => $value->pk);
           $customer = $this->lycm_model->getName($where_customer); 
       
-          $result[] = array("pk"=>$value->pk,
-                            "fname"=>$customer->result_object()[0]->CustomerFName,
-                            "lname"=>$customer->result_object()[0]->CustomerLName,
-                            "product" => $value->product,
+          $result[] = array("pk"          =>$value->pk,
+                            "fname"       =>$customer->result_object()[0]->CustomerFName,
+                            "lname"       =>$customer->result_object()[0]->CustomerLName,
+                            "product"     => $value->product,
                             "description" => $value->promo_desc,
-                            "tran_date" => date("Y-m-d")
+                            "tran_date"   => $value->tran_date
                             );
         }
 

@@ -21,8 +21,46 @@
 <script src="<?=base_url()?>assets/admin_lte/dist/js/demo.js"></script>
 
 <script type="text/javascript">
-//--- popup text on hover ---//
 
+// log in
+$("#sign_in").click(function() {
+	if ($("#user").val() == "" || $("#pwd").val() == "") {
+		alert("Please fill out all fields.");
+		return;
+	}
+ 
+	$("#bar_div").removeClass("hide");
+	$("#message").html("<p>Validating access.. <p>").removeClass("hide");
+	$("#loading_bar").animate({ "width": "100%" }, "slow");
+ 
+   	$.ajax({
+       	type: "POST",
+       	url: "<?=base_url()?>home/login",
+       	data: {
+           	user: $("#user").val(),
+           	pwd: $("#pwd").val()
+       	},
+       	success: function(data) {
+           	var obj = $.parseJSON(data);
+
+           	if (obj.code == "99") {
+				$("#bar_div").addClass("hide");
+				$("#message").html("<p style='color:red'><b>"+obj.msg+"<b><p>");
+				return;
+           	}
+
+           	$("#bar_div").removeClass("hide");
+			$("#message").html("<p style='color:green'><b>"+obj.msg+"<b><p>");
+			window.location.href = "<?=base_url()?>home/homepage";
+       	}
+	});
+});
+ 
+$("#user, #pwd").bind("keypress",function(e){
+    if(e.which === 13) $("#sign_in").click();
+});
+
+//--- popup text on hover ---//
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip(); 
     $('[data-toggle="popover"]').popover();
@@ -30,16 +68,6 @@ $(document).ready(function(){
 
 $('a').tooltip({ selector: '[data-toggle="tooltip"]' });
 
-// Template.AdminLTE.rendered = function() {
-// 	$(document).ready(function(){
-// 	    $('[data-toggle="tooltip"]').tooltip(); 
-// 	    $('[data-toggle="popover"]').popover();
-// 	});
-// };
-
-// $('a').tooltip({ selector: '[data-toggle="tooltip"]' });
-
-//---       ---//
 //------- Selecting Prize Type -------//
 
 $("#prize_category").change(function(){
