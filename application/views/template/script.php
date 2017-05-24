@@ -58,14 +58,6 @@ $("#user, #pwd").bind("keypress",function(e){
     if(e.which === 13) $("#sign_in").click();
 });
 
-//--- popup text on hover ---//
-// $(document).ready(function(){
-//     $('[data-toggle="tooltip"]').tooltip(); 
-//     $('[data-toggle="popover"]').popover();
-// });
-
-// $('a').tooltip({ selector: '[data-toggle="tooltip"]' });
-
 //------- Selecting Prize Type -------//
 
 $("#prize_category").change(function(){
@@ -104,6 +96,7 @@ $("#btnDraw").click(function() {
 		alert("Please fill out all fields.");
 		return;
 	}
+
 	$("#modal-info").show();
 	$.ajax({
 		type: "POST",
@@ -114,7 +107,7 @@ $("#btnDraw").click(function() {
 		},
 
 		success: function(data){
-		$("#modal-info").hide();
+			$("#modal-info").hide();
 			var obj = $.parseJSON(data),
 				IDs = "";
 
@@ -150,7 +143,7 @@ $("#btnDraw").click(function() {
 //------- Confirm Winners -------//
 $("#btnConfirm").click(function() {
 	$("#modal-info").show();
-		$("#draw_form").attr('action', '<?=base_url()?>home/confirm_draw').submit();
+	$("#draw_form").attr('action', '<?=base_url()?>home/confirm_draw').submit();
 });
 //--//
 

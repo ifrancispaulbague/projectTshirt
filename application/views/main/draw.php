@@ -1,5 +1,5 @@
 <?=$this->load->view("main/message", $err);?>
-<?=$this->load->view("main/modal", $err);?>
+<?=$this->load->view("main/modal");?>
 <div class="col-xs-12">
 
     <form class="form-horizontal" method="POST" action="#" id="draw_form" name="draw_form" enctype="multipart/form-data">
@@ -56,7 +56,7 @@
                 <button class="btn btn-info pull-left btn-sm" id="btnDraw" name="btnDraw" type="button"> SUBMIT </button>
               </div>
               <div class="box-content">
-                <button class="btn btn-default pull-left btn-sm" id="btnCancel" name="btnCancel" type="button"> CANCEL </button>
+                <button class="btn btn-default btn-sm" id="btnCancel" name="btnCancel" type="button"> CANCEL </button>
               </div>
             </div>
 

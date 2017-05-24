@@ -1,5 +1,5 @@
 <?=$this->load->view("main/message", $err);?>
-<?=$this->load->view("main/modal", $err);?>
+<?=$this->load->view("main/modal");?>
 <div class="col-xs-12">
 
     <div class="box box-primary">
