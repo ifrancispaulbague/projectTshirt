@@ -5,9 +5,8 @@
         <!-- header -->
         <div class="box-header with-border box-info">
             <h1 class="box-title">Raffle Entries</h1>
-                <a href="<?=base_url()?>" class="btn btn-info pull-right btn-xs" type="button">
-                    Back to Homepage
-                </a>
+            <a href="<?=base_url()?>" class="btn btn-danger pull-right btn-xs" type="button"> Log-out </a>
+            <a href="<?=base_url()?>home/homepage" class="btn btn-info pull-right btn-xs" type="button"> Homepage </a>
         </div>
 
         <!-- raffle entry form -->
