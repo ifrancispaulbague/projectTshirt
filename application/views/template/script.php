@@ -1,4 +1,5 @@
 <script src="<?=base_url()?>assets/admin_lte/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="<?=base_url()?>assets/admin_lte/js/jquery-ui.js"></script>
 <script src="<?=base_url()?>assets/admin_lte/bootstrap/js/bootstrap.min.js"></script>
 <script src="<?=base_url()?>assets/admin_lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <script src="<?=base_url()?>assets/admin_lte/plugins/datepicker/bootstrap-datepicker.js"></script>
@@ -150,7 +151,6 @@ $("#btnDraw").click(function() {
 $("#btnConfirm").click(function() {
 	$("#modal-info").show();
 		$("#draw_form").attr('action', '<?=base_url()?>home/confirm_draw').submit();
-	$("#modal-info").hide();	
 });
 //--//
 
@@ -162,7 +162,6 @@ $("#btnEntry").click(function() {
 	}
 	$("#modal-info").show();
     $("#entry_form").attr('action', '<?=base_url()?>home/upload_entries').submit();
-    // $("#modal-info").hide();
 });
 //--//
 
