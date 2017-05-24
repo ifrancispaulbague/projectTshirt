@@ -69,22 +69,22 @@
             </div>
 
             <div class="box-body"> 
-                <div class="box-body table-responsive">   
-                    <table class="table table-bordered table-hover table-striped" id="tbl_winners">
-                        <thead>
-                            <tr> 
-                                <th style='text-align:center'><h3>PanaloKard No.</h3></th>
-                                <th style='text-align:center'><h3>Customer</h3></th>
-                                <th style='text-align:center'><h3>Product</h3></th>
-                                <th style='text-align:center'><h3>Description</h3></th>
-                                <th style='text-align:center'><h3>Tran Date</h3></th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbody_winner">
-                        <!--  -->
-                        </tbody>
-                    </table>
-                </div>       
+              <div class="box-body table-responsive">   
+                  <table class="table table-bordered table-hover table-striped" id="tbl_winners">
+                      <thead>
+                          <tr> 
+                              <th style='text-align:center'><h3>PanaloKard No.</h3></th>
+                              <th style='text-align:center'><h3>Customer</h3></th>
+                              <th style='text-align:center'><h3>Product</h3></th>
+                              <th style='text-align:center'><h3>Description</h3></th>
+                              <th style='text-align:center'><h3>Tran Date</h3></th>
+                          </tr>
+                      </thead>
+                      <tbody id="tbody_winner">
+                      <!--  -->
+                      </tbody>
+                  </table>
+              </div>       
                 <div class="box-footer col-sm-1">
                     <button class="btn btn-info pull-left btn-sm" id="btnConfirm" name="btnConfirm" type="button">
                         Confirm
