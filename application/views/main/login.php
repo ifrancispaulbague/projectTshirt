@@ -3,8 +3,9 @@
     <div class="col-xs-4">
 
         <div class="login-box-body">
-            <p class="login-box-msg" style="font-size:25px">
-                <b>USSC RAFFLE LOG-IN</b>
+            <p class="login-box-msg">
+                <b>DRAWS</b><br>
+                Enter username and password to continue
             </p>
 
             <form class="form-horizontal" method="POST" action="#" id="login" name="login" enctype="multipart/form-data">
