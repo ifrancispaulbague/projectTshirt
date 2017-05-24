@@ -104,7 +104,7 @@ $("#btnDraw").click(function() {
 		alert("Please fill out all fields.");
 		return;
 	}
- 	$("#modal-info").show();
+	$("#modal-info").show();
 	$.ajax({
 		type: "POST",
 		url: "<?=base_url()?>home/draw_winners", //controller

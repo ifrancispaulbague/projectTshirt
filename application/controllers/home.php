@@ -165,18 +165,18 @@ class Home extends MY_Controller {
                 // update raffle entries
                 $this->entry_model->edit(array("record_id"=>$value), $data);
 
-                // if ($this->db->_error_message()) {
-                //     $log  = date("Y-m-d H:i:s")." :: Database error: ".$this->db->_error_message()." || ";
-                //     $log .= "RECORD ID: ".$value."\n";
-                //     syslogs($log, "WINNER");
-                // }
+                if ($this->db->_error_message()) {
+                    $log  = date("Y-m-d H:i:s")." :: Database error: ".$this->db->_error_message()." || ";
+                    $log .= "RECORD ID: ".$value."\n";
+                    syslogs($log, "WINNER");
+                }
 
-                // if ($this->db->affected_rows() == 0) {
-                //     $log = date("Y-m-d H:i:s")." :: Unable to update record id: ".$value."\n";
-                //     syslogs($log, "WINNER");
-                // } else {
-                //     $winners++;
-                // }
+                if ($this->db->affected_rows() == 0) {
+                    $log = date("Y-m-d H:i:s")." :: Unable to update record id: ".$value."\n";
+                    syslogs($log, "WINNER");
+                } else {
+                    $winners++;
+                }
             }
         }
 

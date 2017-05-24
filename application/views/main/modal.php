@@ -19,8 +19,6 @@
       <div class="modal-body">
         <p>Please Wait</p>
       </div>
-      <div class="modal-footer">
-      </div>
     </div>
     <!-- /.modal-content -->
   </div>
