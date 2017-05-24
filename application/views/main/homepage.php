@@ -4,7 +4,7 @@
         <a href="<?=base_url()?>" class="pull-right"> Log-out </a>
     </div>
     
-    <center><h1> USSC RAFFLE </h1></center>
+    <center><h1> DRAWS </h1></center>
 
     <div class="box-body">
         <table class="table text-center" align="center">
