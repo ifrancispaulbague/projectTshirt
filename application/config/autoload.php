@@ -11,7 +11,7 @@
  */
 
 $autoload['packages'] = array();
-$autoload['libraries'] = array('session', 'database');
+$autoload['libraries'] = array('session', 'database', 'common_library');
 $autoload['helper'] = array('url', 'file', 'common');
 $autoload['config'] = array();
 $autoload['language'] = array();

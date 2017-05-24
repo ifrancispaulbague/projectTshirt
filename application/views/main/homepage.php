@@ -1,5 +1,10 @@
 <div class="col-xs-12">
-    <center><h1 class="box-title"> USSC RAFFLE </h1></center>
+    
+    <div class="box-header box-info">
+        <a href="<?=base_url()?>" class="pull-right"> Log-out </a>
+    </div>
+    
+    <center><h1> USSC RAFFLE </h1></center>
 
     <div class="box-body">
         <table class="table text-center" align="center">

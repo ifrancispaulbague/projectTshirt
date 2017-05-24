@@ -77,12 +77,26 @@ class Home extends MY_Controller {
 
     public function homepage()
     {
+        // check session
+        $session = $this->common_library->check_session();
+        if (!$session) {
+            redirect(base_url());
+            return;
+        }
+
         $data["err"] = array("code"=>"", "msg"=>"");
         $this->main_html("homepage", $data);
     }
 
     public function draw()
     {
+        // check session
+        $session = $this->common_library->check_session();
+        if (!$session) {
+            redirect(base_url());
+            return;
+        }
+
         $data["err"] = array("code"=>"", "msg"=>"");
         $this->main_html("draw", $data);
     }
@@ -194,6 +208,13 @@ class Home extends MY_Controller {
 
     public function entries()
     {
+        // check session
+        $session = $this->common_library->check_session();
+        if (!$session) {
+            redirect(base_url());
+            return;
+        }
+        
         $data["err"] = array("code"=>"", "msg"=>"");
         $this->main_html("entry", $data);
     }
