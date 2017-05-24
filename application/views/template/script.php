@@ -6,7 +6,6 @@
 <script src="<?=base_url()?>assets/admin_lte/plugins/fastclick/fastclick.js"></script>
 <script src="<?=base_url()?>assets/admin_lte/dist/js/app.min.js"></script>
 <script src="<?=base_url()?>assets/admin_lte/dist/js/demo.js"></script>
-<script src="<?=base_url()?>assets/admin_lte/js/jquery-ui.min.js"></script>
 <script src="<?=base_url()?>assets/admin_lte/js/raphael-min.js"></script>
 <script src="<?=base_url()?>assets/admin_lte/plugins/sparkline/jquery.sparkline.min.js"></script>
 <script src="<?=base_url()?>assets/admin_lte/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
@@ -32,7 +31,6 @@ $("#sign_in").click(function() {
 	$("#bar_div").removeClass("hide");
 	$("#message").html("<p>Validating access.. <p>").removeClass("hide");
 	$("#loading_bar").animate({ "width": "100%" }, "slow");
- 
    	$.ajax({
        	type: "POST",
        	url: "<?=base_url()?>home/login",
@@ -42,7 +40,6 @@ $("#sign_in").click(function() {
        	},
        	success: function(data) {
            	var obj = $.parseJSON(data);
-
            	if (obj.code == "99") {
 				$("#bar_div").addClass("hide");
 				$("#message").html("<p style='color:red'><b>"+obj.msg+"<b><p>");
@@ -61,12 +58,12 @@ $("#user, #pwd").bind("keypress",function(e){
 });
 
 //--- popup text on hover ---//
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip(); 
-    $('[data-toggle="popover"]').popover();
-});
+// $(document).ready(function(){
+//     $('[data-toggle="tooltip"]').tooltip(); 
+//     $('[data-toggle="popover"]').popover();
+// });
 
-$('a').tooltip({ selector: '[data-toggle="tooltip"]' });
+// $('a').tooltip({ selector: '[data-toggle="tooltip"]' });
 
 //------- Selecting Prize Type -------//
 
@@ -106,7 +103,7 @@ $("#btnDraw").click(function() {
 		alert("Please fill out all fields.");
 		return;
 	}
-
+ 	$("#modal-info").show();
 	$.ajax({
 		type: "POST",
 		url: "<?=base_url()?>home/draw_winners", //controller
@@ -114,7 +111,9 @@ $("#btnDraw").click(function() {
 			category:$("#category option:selected").text(),
 			winners:$("#winners").val()
 		},
+
 		success: function(data){
+		$("#modal-info").hide();
 			var obj = $.parseJSON(data),
 				IDs = "";
 
@@ -149,7 +148,9 @@ $("#btnDraw").click(function() {
 
 //------- Confirm Winners -------//
 $("#btnConfirm").click(function() {
-	$("#draw_form").attr('action', '<?=base_url()?>home/confirm_draw').submit();
+	$("#modal-info").show();
+		$("#draw_form").attr('action', '<?=base_url()?>home/confirm_draw').submit();
+	$("#modal-info").hide();	
 });
 //--//
 
@@ -159,8 +160,9 @@ $("#btnEntry").click(function() {
 		alert("Please fill out all fields.");
 		return;
 	}
-
+	$("#modal-info").show();
     $("#entry_form").attr('action', '<?=base_url()?>home/upload_entries').submit();
+    // $("#modal-info").hide();
 });
 //--//
 

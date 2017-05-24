@@ -1,4 +1,5 @@
 <?=$this->load->view("main/message", $err);?>
+<?=$this->load->view("main/modal", $err);?>
 <div class="col-xs-12">
 
     <form class="form-horizontal" method="POST" action="#" id="draw_form" name="draw_form" enctype="multipart/form-data">
@@ -84,14 +85,13 @@
                         <!--  -->
                         </tbody>
                     </table>
-                </div>
-
+                </div>       
                 <div class="box-footer col-sm-1">
                     <button class="btn btn-info pull-left btn-sm" id="btnConfirm" name="btnConfirm" type="button">
                         Confirm
                     </button>
                 </div>
-                
+
                 <input type="text" id="record_id" name="record_id" class="col-sm-5 hide">
             </div>
         </div>

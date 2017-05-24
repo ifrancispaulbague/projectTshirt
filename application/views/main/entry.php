@@ -1,6 +1,7 @@
 <?=$this->load->view("main/message", $err);?>
+<?=$this->load->view("main/modal", $err);?>
 <div class="col-xs-12">
-   
+
     <div class="box box-primary">
         <!-- header -->
         <div class="box-header with-border box-info">
@@ -32,7 +33,7 @@
 
         <div class="box-footer">
           <div class="box-content col-sm-1">
-            <button class="btn btn-info pull-left btn-sm" id="btnEntry" name="btnEntry" type="button"> SUBMIT </button>
+            <button class="btn btn-info pull-left btn-sm" id="btnEntry" name="btnEntry" type="button" > SUBMIT </button>
           </div>
           <div class="box-content">
             <button class="btn btn-default pull-left btn-sm" id="btnCancel" name="btnCancel" type="button"> CANCEL </button>
