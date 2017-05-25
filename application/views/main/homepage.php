@@ -4,15 +4,25 @@
         <a href="<?=base_url()?>" class="pull-right"> Log-out </a>
     </div>
     
-    <center><h1> DRAWS </h1></center>
+    <center>
+        <i class="fa fa-fw fa-star"></i>
+        <img src="<?=base_url()?>assets/images/d.png" height="125px" width="125px">
+        <i class="fa fa-fw fa-star"></i>
+        <img src="<?=base_url()?>assets/images/r.png" height="125px" width="125px">
+        <i class="fa fa-fw fa-star"></i>
+        <img src="<?=base_url()?>assets/images/a.png" height="125px" width="125px">
+        <i class="fa fa-fw fa-star"></i>
+        <img src="<?=base_url()?>assets/images/w.png" height="125px" width="125px">
+        <i class="fa fa-fw fa-star"></i>
+        <img src="<?=base_url()?>assets/images/s.png" height="125px" width="125px">
+        <i class="fa fa-fw fa-star"></i>
+    </center>
 
+    <br><br>
+    
     <div class="box-body">
         <table class="table text-center" align="center">
-            <tr>
-                <th>RAFFLE ENTRIES</th>
-                <th>DRAW LOTS</th>
-                <th>REPORTS</th>
-            </tr>
+            <thead>
             <tr>
                 <td >
                     <a href="<?=base_url()?>home/entries" data-toggle="tooltip" title="Upload Raffle Entries">
@@ -30,6 +40,14 @@
                     </a>
                 </td>
             </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>RAFFLE ENTRIES</th>
+                    <th>DRAW LOTS</th>
+                    <th>REPORTS</th>
+                </tr>
+            </tbody>
         </table> 
     </div>
 
