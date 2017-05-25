@@ -42,14 +42,13 @@ class Login extends MY_Controller {
                         "TerminalId"  => $terminal_id
                        ));
 
-        $url  = LOGIN_API;  
         $curl = curl_init(); 
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_URL, LOGIN_API);
 
         if (curl_errno($curl)) {
             $log  = date("Y-m-d H:i:s")." :: Curl Error No: ".curl_errno($curl)." || ";
@@ -81,6 +80,7 @@ class Login extends MY_Controller {
             $this->session->set_userdata("rfs_session", $encrypt_second);
             $this->session_model->save_session($this->session->userdata("emp_no"), $encrypt_second, $res->userType);
 
+            curl_close($curl);
             echo json_encode(array("code"=>"00", "msg"=>"Successfully logged in"));
             return;
         } else {
