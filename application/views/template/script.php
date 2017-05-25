@@ -1,5 +1,5 @@
 <script src="<?=base_url()?>assets/admin_lte/plugins/jQuery/jquery-2.2.3.min.js"></script>
-<script src="<?=base_url()?>assets/admin_lte/js/jquery-ui.js"></script>
+<script src="<?=base_url()?>assets/admin_lte/js/jquery-ui.min.js"></script>
 <script src="<?=base_url()?>assets/admin_lte/bootstrap/js/bootstrap.min.js"></script>
 <script src="<?=base_url()?>assets/admin_lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <script src="<?=base_url()?>assets/admin_lte/plugins/datepicker/bootstrap-datepicker.js"></script>
@@ -28,13 +28,13 @@ $("#sign_in").click(function() {
 		alert("Please fill out all fields.");
 		return;
 	}
- 
+
 	$("#bar_div").removeClass("hide");
 	$("#message").html("<p>Validating access.. <p>").removeClass("hide");
 	$("#loading_bar").animate({ "width": "100%" }, "slow");
    	$.ajax({
        	type: "POST",
-       	url: "<?=base_url()?>login/login",
+       	url: "<?=base_url()?>login/log_in",
        	data: {
            	user: $("#user").val(),
            	pwd: $("#pwd").val()

@@ -27,7 +27,7 @@ class Login extends MY_Controller {
         $this->main_html("login", $data);
     }
 
-    public function login()
+    public function log_in()
     {
         $username    = rawurldecode($this->input->post("user"));
         $password    = rawurldecode($this->input->post("pwd"));
@@ -41,8 +41,8 @@ class Login extends MY_Controller {
                         "Password"    => $password,
                         "TerminalId"  => $terminal_id
                        ));
-        
-        $url = LOGIN_API;  
+
+        $url  = LOGIN_API;  
         $curl = curl_init(); 
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE);
@@ -53,22 +53,26 @@ class Login extends MY_Controller {
 
         if (curl_errno($curl)) {
             $log  = date("Y-m-d H:i:s")." :: Curl Error No: ".curl_errno($curl)." || ";
-            $log .= "Curl Error Description: ".curl_error($curl)."\n";
+            $log .= "Curl Error: ".curl_error($curl)."\n";
             syslogs($log, "LOGIN");
 
-            echo json_encode(array("code"=>"99", "msg"=>"UNABLE TO CONNECT TO LOG IN API. PLEASE TRY AGAIN."));
+            echo json_encode(array("code"=>"99", "msg"=>"Unable to connect to log in API. Please try again."));
             return;
         }
 
         $result = curl_exec($curl);
-        $res    = json_decode($result);
-
-        if ($res->userType == 3) {
-            echo json_encode(array("code"=>"99", "msg"=>"You are not allowed to log-in on this site!"));
+        if ($result === false) {
+            echo json_encode(array("code"=>"99", "msg"=>"Curl Error: ".curl_error($curl)));
             return;
         }
 
+        $res = json_decode($result);
         if(isset($res->code) && ($res->code === "0" || $res->code === "2")) {
+            if ($res->userType == 3) {
+                echo json_encode(array("code"=>"99", "msg"=>"You are not allowed to log-in on this site!"));
+                return;
+            }
+
             $this->session->set_userdata("emp_no", $res->userId);
             $this->session->set_userdata("cost_center", $res->branchCode);
             $this->session->set_userdata("user_type", $res->userType);
