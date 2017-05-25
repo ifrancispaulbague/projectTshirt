@@ -34,7 +34,7 @@ $("#sign_in").click(function() {
 	$("#loading_bar").animate({ "width": "100%" }, "slow");
    	$.ajax({
        	type: "POST",
-       	url: "<?=base_url()?>home/login",
+       	url: "<?=base_url()?>login/login",
        	data: {
            	user: $("#user").val(),
            	pwd: $("#pwd").val()

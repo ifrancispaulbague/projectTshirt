@@ -2,16 +2,16 @@
     <div class="col-xs-4"> </div>
     <div class="col-xs-4">
 
+            <center><img src="<?=base_url()?>assets/images/logo.png" height="250px" width="300px"></center>
         <div class="login-box-body">
             <p class="login-box-msg">
-                <b>DRAWS</b><br>
-                Enter username and password to continue
+                Enter username and password to continue.
             </p>
 
             <form class="form-horizontal" method="POST" action="#" id="login" name="login" enctype="multipart/form-data">
                 <div class="form-group has-feedback">
                     <input type="text" class="form-control" placeholder="Username" maxlength="10" id="user" name="user" autocomplete="off">
-                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
                     <input type="password" class="form-control" placeholder="Password" id="pwd" name="pwd">
