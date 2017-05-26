@@ -71,6 +71,7 @@ class Home extends MY_Controller {
         $ids = explode("|", $this->input->post("record_id"));
 
         $this->load->model('entry_model');
+        $this->db->trans_begin();
         foreach ($ids as $key => $value) {
             if ($value) {
                 // check if minor or major prize
@@ -86,12 +87,16 @@ class Home extends MY_Controller {
                 $this->entry_model->edit(array("record_id"=>$value), $data);
 
                 if ($this->db->_error_message()) {
+                    $this->db->trans_rollback();
+
                     $log  = date("Y-m-d H:i:s")." :: Database error: ".$this->db->_error_message()." || ";
                     $log .= "RECORD ID: ".$value."\n";
                     syslogs($log, "WINNER");
                 }
 
                 if ($this->db->affected_rows() == 0) {
+                    $this->db->trans_rollback();
+
                     $log = date("Y-m-d H:i:s")." :: Unable to update record id: ".$value."\n";
                     syslogs($log, "WINNER");
                 } else {
@@ -100,6 +105,7 @@ class Home extends MY_Controller {
             }
         }
 
+        $this->db->trans_commit();
         $data["err"] = array("code"=>"00", "msg"=>"SUCCESSFUL. CONFIRMED WINNERS: ".$winners);
         $this->main_html("draw", $data);
         return;
