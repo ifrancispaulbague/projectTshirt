@@ -41,7 +41,6 @@ class Home extends MY_Controller {
     {
         $this->load->model('entry_model');
         $this->load->model('draw_model');
-        $this->load->model('lycm_model');
 
         $where = array("promo_desc" => $this->input->post("category"),
                        "status"     => 0);
@@ -62,23 +61,7 @@ class Home extends MY_Controller {
             return;
         }
 
-        //get entries info
-        foreach ($raffle->result_object() as $key => $value){
-
-          $where_customer = array('a.PanaloKardNo' => $value->pk);
-          $customer = $this->lycm_model->getName($where_customer); 
-      
-          $result[] = array("pk"          => $value->pk,
-                            "fname"       => $customer->result_object()[0]->CustomerFName,
-                            "lname"       => $customer->result_object()[0]->CustomerLName,
-                            "product"     => $value->product,
-                            "description" => $value->promo_desc,
-                            "tran_date"   => $value->tran_date,
-                            "record_id"   => $value->record_id
-                            );
-        }
-
-        echo json_encode(array("code"=>"00", "msg"=>$result));
+        echo json_encode(array("code"=>"00", "msg"=>$raffle->result_object()));
         return;
     }
 
