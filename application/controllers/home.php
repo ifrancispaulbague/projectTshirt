@@ -61,6 +61,11 @@ class Home extends MY_Controller {
             return;
         }
 
+        if ($raffle->num_rows < $limit) {
+            echo json_encode(array("code"=>"99", "msg"=>"AVAILABLE RAFFLE ENTRIES ARE LESS THAN THE DEFINED WINNER COUNT."));
+            return;
+        }
+
         echo json_encode(array("code"=>"00", "msg"=>$raffle->result_object()));
         return;
     }
