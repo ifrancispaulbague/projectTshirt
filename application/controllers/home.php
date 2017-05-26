@@ -193,17 +193,51 @@ class Home extends MY_Controller {
         $unuploaded = 0;
 
         // save entries to database
+        $this->load->model("lycm_model");
         $this->db->trans_begin();
         while (($line = fgetcsv($file)) !== FALSE) {
             $ctr += 1;
             if ($ctr != 1) {
+                // validate pk
+                $where_customer = array('a.PanaloKardNo' => $line[0],
+                                        'a.Status'       => 0,
+                                        'b.Status'       => 0);
+                $customer = $this->lycm_model->getName($where_customer);
+
+                if ($this->db->_error_number()) {
+                    $this->db->trans_rollback();
+
+                    $log  = date("Y-m-d H:i:s")." :: Database error: ".$this->db->_error_message()." || ";
+                    $log .= "PANALOKARD: ".$line[0]."\n";
+                    syslogs($log, "ENTRY");
+
+                    $entries["err"] = array("code"=>"99", "msg"=>"DATABASE ERROR. PLEASE CONTACT ADMINISTRATOR.");
+                    $this->main_html("entry", $entries);
+                    return;
+                }
+
+                if ($customer->num_rows == 0) {
+                    $this->db->trans_rollback();
+
+                    $log  = date("Y-m-d H:i:s")." :: PanaloKard No. ".$line[0]." is invalid.\n";
+                    syslogs($log, "ENTRY");
+
+                    $entries["err"] = array("code"=>"99", "msg"=>"PANALOKARD NO. ".$line[0]." IS INVALID/INACTIVE.");
+                    $this->main_html("entry", $entries);
+                    return;
+                }
+
+                // add to database
                 $entries = array("promo_desc"  => $this->input->post("promo_desc"),
                                  "pk"          => $line[0],
+                                 "first_name"  => $customer->result_object()[0]->CustomerFName,
+                                 "last_name"   => $customer->result_object()[0]->CustomerLName,
                                  "product"     => $line[2],
                                  "description" => $line[3],
                                  "tran_date"   => $line[1],
                                  "upload_date" => date("Y-m-d H:i:s")
                              );
+
                 $this->load->model("entry_model");
                 $add_entry = $this->entry_model->add($entries);
 

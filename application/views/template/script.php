@@ -61,7 +61,8 @@ $("#user, #pwd").bind("keypress",function(e){
 //------- Selecting Prize Type -------//
 
 $("#prize_category").change(function(){
-	var category	=	$("#prize_category option:selected").val();
+	hideConfirm();
+	var category = $("#prize_category option:selected").val();
 	$.ajax({
 		type: "POST",
 		url: "<?=base_url()?>home/prizes",
@@ -85,6 +86,7 @@ $("#prize_category").change(function(){
 });
 
 $("#prize_type").change(function(){
+	hideConfirm();
 	var count = $("#prize_type option:selected").attr("data");
  	$('#winners').val(count);
 });
@@ -159,6 +161,7 @@ $("#btnEntry").click(function() {
 //--//
 
 $("#category").change(function() {
+	hideConfirm();
 	$("#promo_desc").val($("#category option:selected").text());
 });
 
@@ -184,5 +187,11 @@ $("#btnReport").click(function() {
 $("#btnCancel").click(function() {
 	window.location.href = window.location.href;
 });
+
+function hideConfirm()
+{
+	$("#tbody_winner").empty();
+	$("#confirm_div").addClass("hide");
+}
 
 </script>
