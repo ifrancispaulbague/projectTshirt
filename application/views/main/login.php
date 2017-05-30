@@ -2,7 +2,7 @@
     <div class="col-xs-4"> </div>
     <div class="col-xs-4">
 
-        <center><img src="<?=base_url()?>assets/images/logo.png" height="250px" width="300px"></center>
+        <center><img src="<?=base_url()?>assets/images/logo.png" height="250px" width="300px" data-toggle="tooltip" title="Digital Random Automated Winner Selection"></center>
         <div class="login-box-body">
             <p class="login-box-msg">
                 Enter username and password to continue.
