@@ -171,12 +171,12 @@ $("#btnReport").click(function() {
 			for (i = 0; i < obj.min.length; i++) {
 				$("#tbody_minor").append(
 					"<tr>",
-						"<td style='text-align:center'><h3>"+obj.min[i].pk+"</h3></td>",
-						"<td style='text-align:center'><h3>"+obj.min[i].first_name+" "+obj.min[i].last_name+"</h3></td>",
-						"<td style='text-align:center'><h3>"+obj.min[i].product +"</h3></td>",
-						"<td style='text-align:center'><h3>"+obj.min[i].description +"</h3></td>",
-						"<td style='text-align:center'><h3>"+obj.min[i].prize_name +"</h3></td>",
-        	"</tr>"
+						"<td style='text-align:center'>"+obj.min[i].pk+"</td>",
+						"<td style='text-align:center'>"+obj.min[i].first_name+" "+obj.min[i].last_name+"</td>",
+						"<td style='text-align:center'>"+obj.min[i].product +"</td>",
+						"<td style='text-align:center'>"+obj.min[i].description +"</td>",
+						"<td style='text-align:center'>"+obj.min[i].prize_name +"</td>",
+        			"</tr>"
         	);
         		IDs = IDs + obj.min[i].record_id + "|";
       		}
@@ -185,12 +185,12 @@ $("#btnReport").click(function() {
 			for (i = 0; i < obj.maj.length; i++) {
 				$("#tbody_major").append(
 					"<tr>",
-						"<td style='text-align:center'><h3>"+obj.maj[i].pk+"</h3></td>",
-						"<td style='text-align:center'><h3>"+obj.maj[i].first_name+" "+obj.maj[i].last_name+"</h3></td>",
-						"<td style='text-align:center'><h3>"+obj.maj[i].product +"</h3></td>",
-						"<td style='text-align:center'><h3>"+obj.maj[i].description +"</h3></td>",
-						"<td style='text-align:center'><h3>"+obj.maj[i].prize_name +"</h3></td>",
-        	"</tr>"
+						"<td style='text-align:center'>"+obj.maj[i].pk+"</td>",
+						"<td style='text-align:center'>"+obj.maj[i].first_name+" "+obj.maj[i].last_name+"</td>",
+						"<td style='text-align:center'>"+obj.maj[i].product +"</td>",
+						"<td style='text-align:center'>"+obj.maj[i].description +"</td>",
+						"<td style='text-align:center'>"+obj.maj[i].prize_name +"</td>",
+        			"</tr>"
         	);
         		IDs = IDs + obj.maj[i].record_id + "|";
       		}

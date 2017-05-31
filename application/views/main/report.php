@@ -24,25 +24,28 @@
                 </select>
             </div>
         </div> -->
+
         <div class="box-footer">
-            <button class="btn btn-info pull-left btn-sm" id="btnReport" name="btnReport" type="button" >
-                SUBMIT
-            </button>
-        </div
-
-         <div class="box-body table-responsive">   
-            <table class="table table-bordered table-hover table-striped" id="tbl_reports" hidden>
-                <thead>
-                    <th style='text-align:center'></th>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+            <div class="col-sm-1 pull left">
+                <button class="btn btn-info pull-left btn-sm" id="btnReport" name="btnReport" type="button">
+                    SUBMIT 
+                </button>
+            </div>
+            <div>
+                <button class="btn btn-default btn-sm" id="btnExtract" name="btnExtract" type="button"> 
+                    EXTRACT ALL
+                </button>    
+            </div>  
         </div>
+    </div>  
+     
 
-        <div class="box box-primary" id="minor_div">
+       <div class="box box-primary" id="minor_div">
             <div class="box-header with-border box-info">
-                <h3 class="box-title">Winners for Minor Prizes</h3>
+                <h3 class="box-title">Winners for Major Prizes</h3>
+                <button class="btn btn-default btn-xs pull-right" id="btnExtractMinor" name="btnExtractMinor" type="button"> 
+                    EXTRACT
+                </button> 
             </div>
 
             <div class="box-body"> 
@@ -68,6 +71,9 @@
         <div class="box box-primary" id="major_div">
             <div class="box-header with-border box-info">
                 <h3 class="box-title">Winners for Major Prizes</h3>
+                <button class="btn btn-default btn-xs pull-right" id="btnExtractMajor" name="btnExtractMajor" type="button"> 
+                    EXTRACT
+                </button> 
             </div>
 
             <div class="box-body"> 
@@ -89,6 +95,4 @@
                 </div>
             </div>
         </div>
-       
-    </div>
 </div>
