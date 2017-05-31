@@ -141,7 +141,65 @@ $("#btnDraw").click(function() {
 		}
 	});
 });
+//Winners Description
+$("#btnReport").click(function() {
 
+	$("#modal-info").show();
+	$.ajax({
+		type: "POST",
+		url: "<?=base_url()?>home/report_list", //controller
+		data: { 
+			category:$("#category option:selected").text(),
+		},
+
+		success: function(data){
+			$("#modal-info").hide();
+			var obj = $.parseJSON(data),
+				IDs = "";
+
+			if (obj.code != "00") {
+      			$("#confirm_div").addClass("hide");
+				alert(obj.msg);
+				return;
+			}
+
+			//clear table
+			$("#tbody_minor").empty();
+			$("#tbody_major").empty();
+
+			//insert data to minor table
+			for (i = 0; i < obj.min.length; i++) {
+				$("#tbody_minor").append(
+					"<tr>",
+						"<td style='text-align:center'><h3>"+obj.min[i].pk+"</h3></td>",
+						"<td style='text-align:center'><h3>"+obj.min[i].first_name+" "+obj.min[i].last_name+"</h3></td>",
+						"<td style='text-align:center'><h3>"+obj.min[i].product +"</h3></td>",
+						"<td style='text-align:center'><h3>"+obj.min[i].description +"</h3></td>",
+						"<td style='text-align:center'><h3>"+obj.min[i].prize_name +"</h3></td>",
+        	"</tr>"
+        	);
+        		IDs = IDs + obj.min[i].record_id + "|";
+      		}
+
+      		//insert data to major table
+			for (i = 0; i < obj.maj.length; i++) {
+				$("#tbody_major").append(
+					"<tr>",
+						"<td style='text-align:center'><h3>"+obj.maj[i].pk+"</h3></td>",
+						"<td style='text-align:center'><h3>"+obj.maj[i].first_name+" "+obj.maj[i].last_name+"</h3></td>",
+						"<td style='text-align:center'><h3>"+obj.maj[i].product +"</h3></td>",
+						"<td style='text-align:center'><h3>"+obj.maj[i].description +"</h3></td>",
+						"<td style='text-align:center'><h3>"+obj.maj[i].prize_name +"</h3></td>",
+        	"</tr>"
+        	);
+        		IDs = IDs + obj.maj[i].record_id + "|";
+      		}
+
+      		$("#record_id").val(IDs);
+      		$("#confirm_div").removeClass("hide");
+		}
+	});
+});
 //------- Confirm Winners -------//
 $("#btnConfirm").click(function() {
 	$("#modal-info").show();

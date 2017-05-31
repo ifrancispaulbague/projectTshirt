@@ -15,7 +15,7 @@
                 </select>
             </div>
         </div>
-        <div class="box-body">
+       <!--  <div class="box-body">
             <label class="col-sm-2 control-label">Criteria</label>
             <div class="col-sm-4">
                 <select class="form-control" id="extract">
@@ -23,14 +23,14 @@
                     <option value="winner">Raffle Winners</option>
                 </select>
             </div>
-        </div>
+        </div> -->
         <div class="box-footer">
             <button class="btn btn-info pull-left btn-sm" id="btnReport" name="btnReport" type="button" >
                 SUBMIT
             </button>
         </div
 
-        <!-- <div class="box-body table-responsive">   
+         <div class="box-body table-responsive">   
             <table class="table table-bordered table-hover table-striped" id="tbl_reports" hidden>
                 <thead>
                     <th style='text-align:center'></th>
@@ -38,7 +38,7 @@
                 <tbody>
                 </tbody>
             </table>
-        </div> -->
+        </div>
 
         <div class="box box-primary" id="minor_div">
             <div class="box-header with-border box-info">

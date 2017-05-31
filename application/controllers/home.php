@@ -305,6 +305,35 @@ class Home extends MY_Controller {
     public function report_list()
     {
         $category = $this->input->post("category");
-        $criteria = $this->input->post("criteria");
+
+        $this->load->model('entry_model');
+
+        $where = array("promo_desc" => $this->input->post("category"),
+                       "a.status"     => 1);
+
+        //get winners
+        $winnerMinor = $this->entry_model->getPrizeMinor($where);
+        $winnerMajor = $this->entry_model->getPrizeMajor($where);
+
+
+        if ($this->db->_error_message()) {
+            syslogs(date("Y-m-d H:i:s")." :: Database error: ".$this->db->_error_message(), "REPORTS");
+            echo json_encode(array("code"=> "99", "msg"=>"DATABASE ERROR. PLEASE CONTACT ADMINISTRATOR."));
+            return;
+        }
+        
+        if ($winnerMinor->num_rows == 0) {
+            echo json_encode(array("code"=>"99", "msg"=>"NO WINNERS"));
+            return;
+        }
+
+        if ($winnerMajor->num_rows == 0) {
+            echo json_encode(array("code"=>"99", "msg"=>"NO WINNERS"));
+            return;
+        }
+
+        $reports = array();
+        echo json_encode(array("code"=>"00", "min"=>$winnerMinor->result_object(), "maj"=>$winnerMajor->result_object()));
+        return;
     }
 }
