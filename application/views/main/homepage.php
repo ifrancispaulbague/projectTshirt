@@ -35,7 +35,7 @@
                     </a>
                 </td>
                 <td>
-                     <a href="<?=base_url()?>home/report" style="margin:20px auto text-align:center display:block width:120px" data-toggle="tooltip" title="Upload Raffle Entries">
+                     <a href="<?=base_url()?>home/report" style="margin:20px auto text-align:center display:block width:120px" data-toggle="tooltip" title="See list of raffle winners">
                         <img src="<?=base_url()?>/assets/images/report2.png" height="200" width="200" class="img-circle">
                     </a>
                 </td>
