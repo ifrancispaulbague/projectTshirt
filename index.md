@@ -1,37 +1,15 @@
-## Welcome to GitHub Pages
+# Project Tshirt
 
-You can use the [editor on GitHub](https://github.com/ifrancispaulbague/projectTshirt/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+Is a Simple web t-shirt transaction process system using MVC.
+A **transaction process system** (TPS) is an information processing system for business transactions involving the collection, modification and retrieval of all transaction data. Characteristics of a TPS include performance, reliability and consistency.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+# Git - the simple guide
+Kindly refer to the link for more information
+http://rogerdudler.github.io/git-guide/
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/ifrancispaulbague/projectTshirt/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+## Git commands
+1. Fork it!
+2. Copy of a local repository: `git clone /path/to/repository`
+3. Commit your changes: `git commit -a -m 'Commit message'`
+4. Pull to the branch: `git pull origin master`
+5. Push to the branch: `git push origin master`
