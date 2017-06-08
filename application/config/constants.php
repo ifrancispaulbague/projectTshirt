@@ -5,15 +5,11 @@
  *------------------------------------------------------------------
  * Date       | Author                 | Revisions
  *------------------------------------------------------------------
- * 2017-03-30 | Analyn R. Sosa         | Initial Draft
- *------------------------------------------------------------------
  *
  */
 
-define('TITLE',					'USSC - RAFFLE');
+define('TITLE',					'PROject T-shirt');
 define('HOST_URL',				$_SERVER['SERVER_NAME']);
-define('USSC_WEBSITE',			'http://www.ussc.com.ph/');
-define('LOGIN_API',				'http://icash_api:1888/UCS_LOGIN');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

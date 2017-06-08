@@ -3,18 +3,13 @@
 	<head>
 		<?=$html_header?>
 	</head>
-	<body class="hold-transition skin-blue layout-top-nav">
+	<body class="hold-transition skin-blue">
+		<?=$html_menu?>
 		<div class="wrapper">
 		    <div class="content-wrapper">
-		        <div class="container">
-		            <section class="content-header">
-		                <h1 id="contHeader"><small></small></h1>
-		            </section>
-
-	                <section class="content">
-						<?=$html_body?>
-		            </section>
-		        </div>
+                <section class="content">
+					<?=$html_body?>
+	            </section>
 		    </div>
 		</div>
 		<?=$html_footer?>

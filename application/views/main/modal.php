@@ -1,12 +1,3 @@
-<?php
-/*
- *------------+----------------+------------------------------------------
- * Date       | Author         | Revisions
- *------------+----------------+------------------------------------------
- * 2017-05-17 | Rienny Jeneben Pascual | Initial Draft
- *------------+----------------+------------------------------------------
- */
-?>
 <div class="modal modal-default fade in" id="modal-info" hidden>
     <div class="modal-dialog">
         <div class="modal-content">

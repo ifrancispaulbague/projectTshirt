@@ -5,12 +5,10 @@
  *------------------------------------------------------------------
  * Date       | Author                 | Revisions
  *------------------------------------------------------------------
- * 2017-03-30 | Analyn R. Sosa         | Initial Draft
- *------------------------------------------------------------------
  *
  */
 
-$route['default_controller'] = 'login';
+$route['default_controller'] = 'home';
 $route['404_override'] = '';
 
 /* End of file routes.php */

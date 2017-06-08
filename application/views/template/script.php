@@ -22,8 +22,9 @@
 
 <script type="text/javascript">
 
-// log in
+// sign in
 $("#sign_in").click(function() {
+	// check if all fields has value
 	if ($("#user").val() == "" || $("#pwd").val() == "") {
 		alert("Please fill out all fields.");
 		return;
@@ -49,11 +50,57 @@ $("#sign_in").click(function() {
 
            	$("#bar_div").removeClass("hide");
 			$("#message").html("<p style='color:green'><b>"+obj.msg+"<b><p>");
+
 			window.location.href = "<?=base_url()?>home/homepage";
        	}
 	});
 });
- 
+
+// sign up
+$("#sign_up").click(function() {
+	// check if all fields has value
+	if (!checkInput()) alert("Please fill out all fields."); return
+
+	// check if password 1 is same with password 2
+	if ($("#pwd1").val() != $("#pwd2").val()) {
+		alert("Password 1 and Password 2 must be same");
+		return;
+	}
+
+	$("#bar_div").removeClass("hide");
+	$("#message").html("<p>Validating access.. <p>").removeClass("hide");
+	$("#loading_bar").animate({ "width": "100%" }, "slow");
+   	$.ajax({
+       	type: "POST",
+       	url: "<?=base_url()?>login/create_user",
+       	data: {
+           	user: 	$("#user").val(),
+           	pwd: 	$("#pwd1").val(),
+           	fname: 	$("#fname").val(),
+           	lname: 	$("#lname").val()
+       	},
+       	success: function(data) {
+           	var obj = $.parseJSON(data);
+           	if (obj.code == "99") {
+				$("#bar_div").addClass("hide");
+				$("#message").html("<p style='color:red'><b>"+obj.msg+"<b><p>");
+				return;
+           	}
+
+           	$("#bar_div").removeClass("hide");
+			$("#message").html("<p style='color:green'><b>"+obj.msg+"<b><p>");
+
+			window.location.href = "<?=base_url()?>home/homepage";
+       	}
+	});
+});
+
+function checkInput() {
+	if ($("input").val() == "") return false;
+	return true;
+}
+
+// ******************************************************************************************************************** // 
 $("#user, #pwd").bind("keypress",function(e){
     if(e.which === 13) $("#sign_in").click();
 });
